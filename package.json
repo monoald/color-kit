@@ -1,0 +1,19 @@
+{
+  "name": "colors",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.ts",
+  "types": "dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "copy-types": "copyfiles -u 1 \"src/**/*.d.ts\" dist"
+  },
+  "author": "monoald",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "^4.9.5"
+  }
+}
