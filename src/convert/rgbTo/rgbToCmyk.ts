@@ -4,31 +4,32 @@ import { validateRgb } from '../../utils/validateRgb'
 function rgbToCmyk(rgb: Rgb): Cmyk {
   validateRgb(rgb)
 
-  const r = rgb.r / 255
-  const g = rgb.g / 255
-  const b = rgb.b / 255
+  let c: number
+  let m: number
+  let y: number
+  let k: number
 
-  const max = Math.max(r, g, b)
+  c = 1 - (rgb.r / 255)
+  m = 1 - (rgb.g / 255)
+  y = 1 - (rgb.b / 255)
+  k = Math.min(c, Math.min(m, y))
 
-  let c: number = 0
-  let m: number = 0 
-  let y: number = 0
-  let k: number = 0
-
-  if (max === 0) {
-    k = 1
+  if (k === 1) {
+    c = 0
+    m = 0
+    y = 0
   } else {
-    c = (1 - r - k) / (1 - k)
-    m = (1 - g - k) / (1 - k)
-    y = (1 - b - k) / (1 - k)
+    c = (c - k) / (1 - k)
+    m = (m - k) / (1 - k)
+    y = (y - k) / (1 - k)
   }
-
+  k = Math.round(k * 100)
+  
   c = Math.round(c * 100)
   m = Math.round(m * 100)
   y = Math.round(y * 100)
-  k = Math.round(k * 100)
 
-  return { c, m, y, k }
+  return { c, m, y, k } 
 }
 
 export { rgbToCmyk }
