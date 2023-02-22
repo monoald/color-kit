@@ -17,9 +17,14 @@ function rgbToLab(rgb: Rgb): Lab {
   const var_Y3 = var_Y > 0.008856 ? Math.pow(var_Y, 1 / 3) : 7.787 * var_Y + 16 / 116
   const var_Z3 = var_Z > 0.008856 ? Math.pow(var_Z, 1 / 3) : 7.787 * var_Z + 16 / 116
 
-  const l = 116 * var_Y3 - 16
-  const a = 500 * (var_X3 - var_Y3)
-  const b = 200 * (var_Y3 - var_Z3)
+  let l = Math.round(116 * var_Y3 - 16)
+  let a = Math.round(500 * (var_X3 - var_Y3))
+  let b = Math.round(200 * (var_Y3 - var_Z3))
+
+  // Fix negative -0
+  if (l.toString() === '-0') l = 0
+  if (a.toString() === '-0') a = 0
+  if (b.toString() === '-0') b = 0
 
   return { l, a, b }
 }
