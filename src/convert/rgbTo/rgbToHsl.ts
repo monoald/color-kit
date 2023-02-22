@@ -1,5 +1,5 @@
-import { Rgb, Hsl } from "../../types"
-import { validateRgb } from "../../utils/validateRgb"
+import { Rgb, Hsl } from '../../types'
+import { validateRgb } from '../../utils/validateRgb'
 
 function rgbToHsl(rgb: Rgb): Hsl {
   validateRgb(rgb)
@@ -35,9 +35,9 @@ function rgbToHsl(rgb: Rgb): Hsl {
   } else {
     s = delta / (1 - Math.abs(2 * l - 1))
   }
-  s = +(s * 100).toFixed(1)
+  s = Math.round(s * 100)
 
-  l = +(l * 100).toFixed(1)
+  l = Math.round(l * 100)
 
   return { h, s, l }
 }

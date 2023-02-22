@@ -1,4 +1,4 @@
-import { Rgb } from "../types"
+import { Rgb } from '../types'
 
 function validateRgb(rgb: Rgb): void {
   const { r, g, b } = rgb
