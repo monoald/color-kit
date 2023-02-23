@@ -1,4 +1,5 @@
 export * from './cmykTo'
 export * from './hexTo'
 export * from './hslTo'
+export * from './hsvTo'
 export * from './rgbTo'
