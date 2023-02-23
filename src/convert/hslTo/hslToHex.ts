@@ -1,5 +1,4 @@
 import { Hsl } from '../../types'
-import { validateHsl } from '../../utils/validateHsl'
 import { rgbToHex } from '../rgbTo'
 import { hslToRgb } from './hslToRgb'
 
