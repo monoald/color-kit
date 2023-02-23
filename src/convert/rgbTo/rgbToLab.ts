@@ -22,9 +22,9 @@ function rgbToLab(rgb: Rgb): Lab {
   let b = Math.round(200 * (var_Y3 - var_Z3))
 
   // Fix negative -0
-  if (l.toString() === '-0') l = 0
-  if (a.toString() === '-0') a = 0
-  if (b.toString() === '-0') b = 0
+  if (l.toString() === '0') l = 0
+  if (a.toString() === '0') a = 0
+  if (b.toString() === '0') b = 0
 
   return { l, a, b }
 }

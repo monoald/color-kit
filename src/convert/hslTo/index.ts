@@ -1,0 +1,6 @@
+export { hslToCmyk } from './hslToCmyk'
+export { hslToHex } from './hslToHex'
+export { hslToHsv } from './hslToHsv'
+export { hslToLab } from './hslToLab'
+export { hslToRgb } from './hslToRgb'
+export { hslToXyz } from './hslToXyz'
