@@ -3,6 +3,7 @@ import { Hsl } from '../types'
 function validateHsl(hsl: Hsl): void {
   const { h, s, l } = hsl
 
+  // Check for invalid data
   if (
     h < 0 || h > 360 ||
     s < 0 || s > 100 ||

@@ -4,15 +4,21 @@ import { validateRgb } from '../../utils/validateRgb'
 function rgbToHsv(rgb: Rgb): Hsv {
   validateRgb(rgb)
 
+  // Normalize values to a range of 0 to 100
   const r = rgb.r / 255
   const g = rgb.g / 255
   const b = rgb.b / 255
 
+  // Calculate Delta
   const max = Math.max(r, g, b)
   const min = Math.min(r, g, b)
   const delta = max - min
 
-  let h, s, v
+  let h: number
+  let s: number
+  let v: number
+
+  // Calculate Hue
   if (delta === 0) {
     h = 0
   } else if (max === r) {
@@ -22,12 +28,15 @@ function rgbToHsv(rgb: Rgb): Hsv {
   } else {
     h = (r - g) / delta + 4
   }
-  h = Math.round(h * 60)
-  if (h < 0) h += 360
 
+  h = Math.round(h * 60)
+  h = h < 0 ? h + 360 : h
+
+  // Calculate Saturation
   s = max === 0 ? 0 : delta / max
   s = Math.round(s * 100)
 
+  // Calculate Value
   v = Math.round(max * 100)
 
   return { h, s, v }

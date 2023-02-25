@@ -1,24 +1,27 @@
 import { Hsv, Rgb } from '../../types'
 import { validateHsv } from '../../utils/validateHsv'
 
-function hsvToRgb(hsv: Hsv): Rgb {
-  validateHsv(hsv)
+function hsvToRgb({ h, s, v }: Hsv): Rgb {
+  validateHsv({ h, s, v })
 
-  let { h, s, v } = hsv
-
+  // Normalize values to a range of 0 to 360
   h /= 360
+
+  // Normalize values to a range of 0 to 100
   s /= 100
   v /= 100
 
-  let r: number
-  let g: number
-  let b: number
-
+  // Calculate intermediate values
   let i = Math.floor(h * 6)
   let f = h * 6 - i
   let p = v * (1 - s)
   let q = v * (1 - f * s)
   let t = v * (1 - (1 - f) * s)
+
+  // Determine the RGB values based on hue value
+  let r: number
+  let g: number
+  let b: number
 
   switch (i % 6) {
     case 0: r = v, g = t, b = p 
@@ -35,6 +38,7 @@ function hsvToRgb(hsv: Hsv): Rgb {
       break
   }
 
+  // Normalize values to a range of 0 to 255
   r = Math.round(r * 255)
   g = Math.round(g * 255)
   b = Math.round(b * 255)

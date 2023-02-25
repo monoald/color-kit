@@ -3,6 +3,7 @@ import { Hsv } from '../types'
 function validateHsv(hsv: Hsv): void {
   const { h, s, v } = hsv
 
+  // Check for invalid data
   if (
     h < 0 || h > 360 ||
     s < 0 || s > 100 ||

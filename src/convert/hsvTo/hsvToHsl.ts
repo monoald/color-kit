@@ -1,15 +1,17 @@
 import { Hsl, Hsv } from '../../types'
 import { validateHsv } from '../../utils/validateHsv'
 
-function hsvToHsl(hsv: Hsv): Hsl {
-  validateHsv(hsv)
+function hsvToHsl({ h, s, v }: Hsv): Hsl {
+  validateHsv({ h, s, v })
 
-  let { h, s, v } = hsv
+  // Normalize values to a range of range 0 to 1
   s /= 100
   v /= 100
 
+  // Calculate Lightness
   let l = (2 - s) * v / 2
 
+  // Calculate Saturation
   if (l !== 0) {
     if (l === 1) {
       s = 0
@@ -20,6 +22,7 @@ function hsvToHsl(hsv: Hsv): Hsl {
     }
   }
 
+  // Normalize values to a range of range 0 to 100
   s = s * 100
   l = l * 100
 

@@ -1,8 +1,9 @@
 import { Cmyk } from '../types'
 
-function validateCmyk(rgb: Cmyk): void {
-  const { c, m, y, k } = rgb
+function validateCmyk(cmyk: Cmyk): void {
+  const { c, m, y, k } = cmyk
 
+  // Check for invalid data
   if (
     c < 0 || c > 100 ||
     m < 0 || m > 100 ||
