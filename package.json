@@ -2,14 +2,15 @@
   "name": "colors",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.ts",
+  "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
     "/dist"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "copy-types": "copyfiles -u 1 \"src/**/*.d.ts\" dist"
+    "copy-types": "copyfiles -u 1 \"src/**/*.d.ts\" dist",
+    "build": "rm -rf dist/ && npx tsc && npx tsc --module CommonJS --outdir dist/"
   },
   "author": "monoald",
   "license": "ISC",
