@@ -44,3 +44,5 @@ export interface ColorFormats {
   rgb?: Rgb
   xyz?: Xyz
 }
+
+export type AnyFormat = Cmyk | string | Hsl | Hsv | Lab | Rgb | Xyz

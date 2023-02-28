@@ -1,19 +1,21 @@
 import { Cmyk, Hsl, Hsv, Rgb, ColorFormats } from '../types'
+import { identifyFormat } from '../utils/identifyFormat'
 import converter from './index'
 
-type CurrentValue = Cmyk | string | Hsl | Hsv | Rgb
+type BaseColor = Cmyk | string | Hsl | Hsv | Rgb
 
 interface Options {
-  currentFormat: string
+  currentFormat?: string
   targetFormat?: Array<string>
   AllFormats?: boolean
+  identifyFormat?: boolean
 }
 
 function colorFormatConverter(
-  value: CurrentValue,
+  color: BaseColor,
   options: Options
 ): ColorFormats {
-  const currentFormat = options.currentFormat
+  const currentFormat = options.identifyFormat ? identifyFormat(color) : options.currentFormat
   const targetFormats = options.AllFormats ? ['cmyk', 'hex', 'hsl', 'hsv', 'lab', 'rgb', 'xyz'] : options.targetFormat
 
   const finalValue: ColorFormats = {}
@@ -27,160 +29,160 @@ function colorFormatConverter(
       currentFormat === 'cmyk' &&
       format ===  'hex'
     ) {
-      finalValue['hex'] = converter.cmykToHex(value as Cmyk)
+      finalValue['hex'] = converter.cmykToHex(color as Cmyk)
     } else if (
       currentFormat === 'cmyk' &&
       format === 'hsl'
     ) {
-      finalValue['hsl'] = converter.cmykToHsl(value as Cmyk)
+      finalValue['hsl'] = converter.cmykToHsl(color as Cmyk)
     } else if (
       currentFormat === 'cmyk' &&
       format === 'hsv'
     ) {
-      finalValue['hsv'] = converter.cmykToHsv(value as Cmyk)
+      finalValue['hsv'] = converter.cmykToHsv(color as Cmyk)
     } else if (
       currentFormat === 'cmyk' &&
       format === 'lab'
     ) {
-      finalValue['lab'] = converter.cmykToLab(value as Cmyk)
+      finalValue['lab'] = converter.cmykToLab(color as Cmyk)
     } else if (
       currentFormat === 'cmyk' &&
       format === 'rgb'
     ) {
-      finalValue['rgb'] = converter.cmykToRgb(value as Cmyk)
+      finalValue['rgb'] = converter.cmykToRgb(color as Cmyk)
     } else if (
       currentFormat === 'cmyk' &&
       format === 'xyz'
     ) {
-      finalValue['xyz'] = converter.cmykToXyz(value as Cmyk)
+      finalValue['xyz'] = converter.cmykToXyz(color as Cmyk)
     }
     // Hexadecimal to - convertions
     else if (
       currentFormat === 'hex' &&
       format === 'cmyk'
     ) {
-      finalValue['cmyk'] = converter.hexToCmyk(value as string)
+      finalValue['cmyk'] = converter.hexToCmyk(color as string)
     } else if (
       currentFormat === 'hex' &&
       format === 'hsl'
     ) {
-      finalValue['hsl'] = converter.hexToHsl(value as string)
+      finalValue['hsl'] = converter.hexToHsl(color as string)
     } else if (
       currentFormat === 'hex' &&
       format === 'hsv'
     ) {
-      finalValue['hsv'] = converter.hexToHsv(value as string)
+      finalValue['hsv'] = converter.hexToHsv(color as string)
     } else if (
       currentFormat === 'hex' &&
       format === 'lab'
     ) {
-      finalValue['lab'] = converter.hexToLab(value as string)
+      finalValue['lab'] = converter.hexToLab(color as string)
     } else if (
       currentFormat === 'hex' &&
       format === 'rgb'
     ) {
-      finalValue['rgb'] = converter.hexToRgb(value as string)
+      finalValue['rgb'] = converter.hexToRgb(color as string)
     } else if (
       currentFormat === 'hex' &&
       format === 'xyz'
     ) {
-      finalValue['xyz'] = converter.hexToXyz(value as string)
+      finalValue['xyz'] = converter.hexToXyz(color as string)
     }
     // HSL to - convertions
     else if (
       currentFormat === 'hsl' &&
       format === 'cmyk'
     ) {
-      finalValue['cmyk'] = converter.hslToCmyk(value as Hsl)
+      finalValue['cmyk'] = converter.hslToCmyk(color as Hsl)
     } else if (
       currentFormat === 'hsl' &&
       format === 'hex'
     ) {
-      finalValue['hex'] = converter.hslToHex(value as Hsl)
+      finalValue['hex'] = converter.hslToHex(color as Hsl)
     } else if (
       currentFormat === 'hsl' &&
       format === 'hsv'
     ) {
-      finalValue['hsv'] = converter.hslToHsv(value as Hsl)
+      finalValue['hsv'] = converter.hslToHsv(color as Hsl)
     } else if (
       currentFormat === 'hsl' &&
       format === 'lab'
     ) {
-      finalValue['lab'] = converter.hslToLab(value as Hsl)
+      finalValue['lab'] = converter.hslToLab(color as Hsl)
     } else if (
       currentFormat === 'hsl' &&
       format === 'rgb'
     ) {
-      finalValue['rgb'] = converter.hslToRgb(value as Hsl)
+      finalValue['rgb'] = converter.hslToRgb(color as Hsl)
     } else if (
       currentFormat === 'hsl' &&
       format === 'xyz'
     ) {
-      finalValue['xyz'] = converter.hslToXyz(value as Hsl)
+      finalValue['xyz'] = converter.hslToXyz(color as Hsl)
     }
     // HSV to - convertions
     else if (
       currentFormat === 'hsv' &&
       format === 'cmyk'
     ) {
-      finalValue['cmyk'] = converter.hsvToCmyk(value as Hsv)
+      finalValue['cmyk'] = converter.hsvToCmyk(color as Hsv)
     } else if (
       currentFormat === 'hsv' &&
       format === 'hex'
     ) {
-      finalValue['hex'] = converter.hsvToHex(value as Hsv)
+      finalValue['hex'] = converter.hsvToHex(color as Hsv)
     } else if (
       currentFormat === 'hsv' &&
       format === 'hsl'
     ) {
-      finalValue['hsl'] = converter.hsvToHsl(value as Hsv)
+      finalValue['hsl'] = converter.hsvToHsl(color as Hsv)
     } else if (
       currentFormat === 'hsv' &&
       format === 'lab'
     ) {
-      finalValue['lab'] = converter.hsvToLab(value as Hsv)
+      finalValue['lab'] = converter.hsvToLab(color as Hsv)
     } else if (
       currentFormat === 'hsv' &&
       format === 'rgb'
     ) {
-      finalValue['rgb'] = converter.hsvToRgb(value as Hsv)
+      finalValue['rgb'] = converter.hsvToRgb(color as Hsv)
     } else if (
       currentFormat === 'hsv' &&
       format === 'xyz'
     ) {
-      finalValue['xyz'] = converter.hsvToXyz(value as Hsv)
+      finalValue['xyz'] = converter.hsvToXyz(color as Hsv)
     }
     // RGB to - convertions
     else if (
       currentFormat === 'rgb' &&
       format === 'cmyk'
     ) {
-      finalValue['cmyk'] = converter.rgbToCmyk(value as Rgb)
+      finalValue['cmyk'] = converter.rgbToCmyk(color as Rgb)
     } else if (
       currentFormat === 'rgb' &&
       format === 'hex'
     ) {
-      finalValue['hex'] = converter.rgbToHex(value as Rgb)
+      finalValue['hex'] = converter.rgbToHex(color as Rgb)
     } else if (
       currentFormat === 'rgb' &&
       format === 'hsl'
     ) {
-      finalValue['hsl'] = converter.rgbToHsl(value as Rgb)
+      finalValue['hsl'] = converter.rgbToHsl(color as Rgb)
     } else if (
       currentFormat === 'rgb' &&
       format === 'hsv'
     ) {
-      finalValue['hsv'] = converter.rgbToHsv(value as Rgb)
+      finalValue['hsv'] = converter.rgbToHsv(color as Rgb)
     } else if (
       currentFormat === 'rgb' &&
       format === 'lab'
     ) {
-      finalValue['lab'] = converter.rgbToLab(value as Rgb)
+      finalValue['lab'] = converter.rgbToLab(color as Rgb)
     } else if (
       currentFormat === 'rgb' &&
       format === 'xyz'
     ) {
-      finalValue['xyz'] = converter.rgbToXyz(value as Rgb)
+      finalValue['xyz'] = converter.rgbToXyz(color as Rgb)
     } else {
       throw new Error('Format not valid')
     }
