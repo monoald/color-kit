@@ -1,8 +1,6 @@
-import { Cmyk, Hsl, Hsv, Rgb, ColorFormats } from '../types'
+import { Cmyk, Hsl, Hsv, Rgb, ColorFormats, BaseColor } from '../types'
 import { identifyFormat } from '../utils/identifyFormat'
 import converter from './index'
-
-type BaseColor = Cmyk | string | Hsl | Hsv | Rgb
 
 interface Options {
   currentFormat?: string
