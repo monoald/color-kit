@@ -6,6 +6,8 @@ export * from './makeSquarePalette'
 export * from './makeTetradicPalette'
 export * from './makeTriadicPalette'
 
+export * from './makeColorPalette'
+
 // Export functions enclosed in a single variable
 import * as palette from './index'
 export default palette
