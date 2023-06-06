@@ -1,5 +1,5 @@
 import { Cmyk, Rgb } from '../../types'
-import { validateCmyk } from '../../utils/validateCmyk'
+import { validateCmyk } from '../../validate'
 
 function cmykToRgb(cmyk: Cmyk): Rgb {
   validateCmyk(cmyk)

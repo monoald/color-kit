@@ -1,5 +1,5 @@
 import { Hsl, Hsv } from '../../types'
-import { validateHsv } from '../../utils/validateHsv'
+import { validateHsv } from '../../validate'
 
 function hsvToHsl({ h, s, v }: Hsv): Hsl {
   validateHsv({ h, s, v })

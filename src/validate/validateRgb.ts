@@ -1,6 +1,6 @@
 import { Rgb } from '../types'
 
-function validateRgb(rgb: Rgb): void {
+export function validateRgb(rgb: Rgb): void {
   const { r, g, b } = rgb
 
   // Check for invalid data
@@ -12,5 +12,3 @@ function validateRgb(rgb: Rgb): void {
     throw new Error('Values are not valid. RGB only accept values from 0 to 255')
   }
 }
-
-export { validateRgb }

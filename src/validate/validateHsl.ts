@@ -1,6 +1,6 @@
 import { Hsl } from '../types'
 
-function validateHsl(hsl: Hsl): void {
+export function validateHsl(hsl: Hsl): void {
   const { h, s, l } = hsl
 
   // Check for invalid data
@@ -12,5 +12,3 @@ function validateHsl(hsl: Hsl): void {
     throw new Error('Values are not valid. HSL only accept values for: hue from 0 to 360, saturation and lightness from 0 to 100')
   }
 }
-
-export { validateHsl }

@@ -1,6 +1,6 @@
 import { Cmyk } from '../types'
 
-function validateCmyk(cmyk: Cmyk): void {
+export function validateCmyk(cmyk: Cmyk): void {
   const { c, m, y, k } = cmyk
 
   // Check for invalid data
@@ -13,5 +13,3 @@ function validateCmyk(cmyk: Cmyk): void {
     throw new Error('Values are not valid. Cmyk only accept values from 0 to 100')
   }
 }
-
-export { validateCmyk }

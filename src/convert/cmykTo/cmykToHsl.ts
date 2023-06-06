@@ -1,5 +1,5 @@
 import { Cmyk, Hsl } from '../../types'
-import { validateCmyk } from '../../utils/validateCmyk'
+import { validateCmyk } from '../../validate'
 
 function cmykToHsl(cmyk: Cmyk): Hsl {
   validateCmyk(cmyk)

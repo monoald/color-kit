@@ -1,5 +1,5 @@
 import { Hsl, Rgb } from '../../types'
-import { validateHsl } from '../../utils/validateHsl'
+import { validateHsl } from '../../validate'
 
 const hue2rgb = (p: number, q: number, t: number) => {
   if (t < 0) t += 1;

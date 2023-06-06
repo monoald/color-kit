@@ -1,5 +1,5 @@
 import { Rgb } from '../../types'
-import { validateRgb } from '../../utils/validateRgb'
+import { validateRgb } from '../../validate'
 
 type Hex = string
 

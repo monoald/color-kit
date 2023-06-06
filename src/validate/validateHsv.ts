@@ -1,6 +1,6 @@
 import { Hsv } from '../types'
 
-function validateHsv(hsv: Hsv): void {
+export function validateHsv(hsv: Hsv): void {
   const { h, s, v } = hsv
 
   // Check for invalid data
@@ -12,5 +12,3 @@ function validateHsv(hsv: Hsv): void {
     throw new Error('Values are not valid. HSV only accept values for: hue from 0 to 360, saturation and value from 0 to 100')
   }
 }
-
-export { validateHsv }

@@ -1,0 +1,6 @@
+export { validateCmyk } from './validateCmyk'
+export { validateHex } from './validateHex'
+export { validateHsl } from './validateHsl'
+export { validateHsv } from './validateHsv'
+export { validateLab } from './validateLab'
+export { validateRgb } from './validateRgb'

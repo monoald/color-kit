@@ -1,5 +1,5 @@
 import { Hsl, Lab } from '../../types'
-import { validateHsl } from '../../utils/validateHsl'
+import { validateHsl } from '../../validate'
 import { rgbToLab } from '../rgbTo'
 import { hslToRgb } from './hslToRgb'
 

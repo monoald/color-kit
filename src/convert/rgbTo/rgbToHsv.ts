@@ -1,5 +1,5 @@
 import { Rgb, Hsv } from '../../types'
-import { validateRgb } from '../../utils/validateRgb'
+import { validateRgb } from '../../validate'
 
 function rgbToHsv(rgb: Rgb): Hsv {
   validateRgb(rgb)

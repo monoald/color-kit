@@ -1,5 +1,5 @@
 import { hex3ToHex6 } from '../../utils/hex3ToHex6'
-import { validateHex } from '../../utils/validateHex'
+import { validateHex } from '../../validate'
 
 function hexToRgb(hex: string) {
   validateHex(hex)

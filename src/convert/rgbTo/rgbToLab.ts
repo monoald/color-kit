@@ -1,5 +1,5 @@
 import { Rgb, Lab } from '../../types'
-import { validateRgb } from '../../utils/validateRgb'
+import { validateRgb } from '../../validate'
 import { rgbToXyz } from './rgbToXyz'
 
 function rgbToLab(rgb: Rgb): Lab {
