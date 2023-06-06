@@ -45,6 +45,17 @@ export interface ColorFormats {
   xyz?: Xyz
 }
 
+export interface Range {
+  min: number,
+  max: number
+}
+
 export type AnyFormat = Cmyk | string | Hsl | Hsv | Lab | Rgb | Xyz
 
 export type BaseColor = Cmyk | string | Hsl | Hsv | Rgb
+
+export type Color = Array<number>
+
+export type Colors = Array<Color>
+
+export type K = number
