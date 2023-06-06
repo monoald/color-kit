@@ -16,7 +16,7 @@ function toProtanopia(color: BaseColor): AnyFormat {
     ({ r, g, b } = converter.colorFormatConverter(color, {
       currentFormat: format,
       targetFormat: ['rgb']
-    }).rgb)
+    }).rgb as Rgb)
   }
 
   // Calculate Protanopia values
@@ -37,7 +37,7 @@ function toProtanopia(color: BaseColor): AnyFormat {
     protanopiaColor = converter.colorFormatConverter(newColorRgb, {
       currentFormat: 'rgb',
       targetFormat: [format]
-    })[format]
+    })[format] as AnyFormat
   }
 
   return protanopiaColor

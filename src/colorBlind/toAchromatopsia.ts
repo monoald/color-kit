@@ -16,7 +16,7 @@ function toAchromatopsia(color: BaseColor): AnyFormat {
     ({ r, g, b } = converter.colorFormatConverter(color, {
       currentFormat: format,
       targetFormat: ['rgb']
-    }).rgb)
+    }).rgb as Rgb)
   }
 
   // Calculate Deuteranopia value
@@ -35,7 +35,7 @@ function toAchromatopsia(color: BaseColor): AnyFormat {
     deuteranopiaColor = converter.colorFormatConverter(newColorRgb, {
       currentFormat: 'rgb',
       targetFormat: [format]
-    })[format]
+    })[format] as AnyFormat
   }
 
   return deuteranopiaColor

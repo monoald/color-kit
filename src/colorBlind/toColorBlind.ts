@@ -7,7 +7,11 @@ interface Options {
 }
 
 function toColorBlind(options: Options): AnyFormat {
-  let color: AnyFormat
+  let color: AnyFormat = '#000000'
+
+  if (options.color === undefined || options.color === null) {
+    return color
+  }
 
   switch (options.colorBlindness) {
     case 'achromatomaly':

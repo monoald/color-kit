@@ -16,7 +16,7 @@ function toAchromatomaly(color: BaseColor): AnyFormat {
     ({ r, g, b } = converter.colorFormatConverter(color, {
       currentFormat: format,
       targetFormat: ['rgb']
-    }).rgb)
+    }).rgb as Rgb)
   }
 
   // Calculate Deuteranopia value
@@ -37,7 +37,7 @@ function toAchromatomaly(color: BaseColor): AnyFormat {
     achromatomalyColor = converter.colorFormatConverter(newColorRgb, {
       currentFormat: 'rgb',
       targetFormat: [format]
-    })[format]
+    })[format] as AnyFormat
   }
 
   return achromatomalyColor

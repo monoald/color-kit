@@ -16,7 +16,7 @@ function toTritanopia(color: BaseColor): AnyFormat {
     ({ r, g, b } = converter.colorFormatConverter(color, {
       currentFormat: format,
       targetFormat: ['rgb']
-    }).rgb)
+    }).rgb as Rgb)
   }
 
   // Calculate Tritanopia value
@@ -37,7 +37,7 @@ function toTritanopia(color: BaseColor): AnyFormat {
     tritanopiaColor = converter.colorFormatConverter(newColorRgb, {
       currentFormat: 'rgb',
       targetFormat: [format]
-    })[format]
+    })[format] as AnyFormat
   }
 
   return tritanopiaColor
