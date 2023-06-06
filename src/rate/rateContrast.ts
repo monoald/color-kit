@@ -1,7 +1,7 @@
-import { Rgb } from '../types'
+import { Rgb, WCAGRequierements } from '../types'
 import { getRelativeLuminance } from '../utils/getRelativeLuminance'
 
-function rateContrast(colors: Array<Rgb>): number {
+export function rateContrast(colors: Array<Rgb>): WCAGRequierements {
   const contrastRatios = []
 
   // Calculate contrast ratio for each pair
@@ -16,7 +16,38 @@ function rateContrast(colors: Array<Rgb>): number {
   const avgContrastRatio = contrastRatios.reduce((acc, val) => acc + val, 0) / contrastRatios.length
   const rate = +(avgContrastRatio).toFixed(1)
 
-  return rate
+  // Check WCAG requirement 2023
+  const minValueSmallAA = 4.5
+  const minValueLargeAA = 3
+  const minValueUIAA = 3
+  const minValueSmallAAA = 7
+  const minValueLargeAAA = 4.5
+
+  const wcagRequirements: WCAGRequierements = {
+    contrastValue: rate,
+    AA: {
+      smallTextMinimum: minValueSmallAA,
+      smallText: rate >= minValueSmallAA,
+
+      largeTextMinimum: minValueLargeAA,
+      largeText: rate >= minValueLargeAA,
+
+      uiComponentMinimum: minValueUIAA,
+      uiComponent: rate >= minValueUIAA
+    },
+    AAA: {
+      smallTextMinimum: minValueSmallAAA,
+      smallText: rate >= minValueSmallAAA,
+
+      largeTextMinimum: minValueLargeAAA,
+      largeText: rate >= minValueLargeAAA,
+
+      uiComponentMinimum: minValueUIAA,
+      uiComponent: rate >= minValueUIAA
+    }
+  }
+
+  return wcagRequirements
 }
 
 function getContrastRatio(color1: Rgb, color2: Rgb) {
@@ -33,5 +64,3 @@ function getContrastRatio(color1: Rgb, color2: Rgb) {
 
   return contrastRatio
 }
-
-export { rateContrast }
