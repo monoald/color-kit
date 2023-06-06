@@ -2,18 +2,18 @@ import palette from ".";
 import { getRandomColor } from "../random";
 import { AnyFormat, BaseColor, ColorFormats } from "../types";
 
-type PaletteType = 'analogous' | 'complementary' | 'monochromatic' | 'split-complementary' | 'square' | 'tetradic' | 'triadic'
+export type PaletteType = 'analogous' | 'complementary' | 'monochromatic' | 'split-complementary' | 'square' | 'tetradic' | 'triadic'
 
 interface Options {
   randomColor?: boolean
   color?: BaseColor
-  format?: string
+  format: string
   paletteType?: PaletteType
   quantity?: number,
   variation?: number
 }
 
-function makeColorPalette(options: Options) {
+function makeColorPalette(options: Options): Array<AnyFormat> {
   const format = options.format as keyof ColorFormats
   const variation = options.variation ? options.variation : 0
   let color: BaseColor
@@ -24,7 +24,7 @@ function makeColorPalette(options: Options) {
     color = getRandomColor({
       formats: [options.format]
     })[format] as BaseColor
-  } else {
+  } else if (options.color) {
     color = options.color
   }
 
@@ -65,3 +65,5 @@ function makeColorPalette(options: Options) {
 
   return colorPalette
 }
+
+export { makeColorPalette }

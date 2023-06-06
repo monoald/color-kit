@@ -7,6 +7,8 @@ function makeTriadicPalette(color: BaseColor): Array<AnyFormat> {
   let h: number
   let s: number
   let l: number
+  let color1: AnyFormat
+  let color2: AnyFormat
 
   // Get HSL value to manipulate Hue
   if (format === 'hsl') {
@@ -14,7 +16,7 @@ function makeTriadicPalette(color: BaseColor): Array<AnyFormat> {
   } else {
     ({ h, s, l} = colorFormatConverter(color, {
       currentFormat: format, targetFormat: ['hsl']
-    }).hsl)
+    }).hsl as Hsl)
   }
 
   // Calculate angles for the triadic colors
@@ -22,27 +24,23 @@ function makeTriadicPalette(color: BaseColor): Array<AnyFormat> {
   const angle2 = (h + 240) % 360
 
   // Convert the angles back to origin format
-  let newColor1: ColorFormats = {
-    hsl: { h: angle1, s, l }
-  }
+  const colorHsl1: Hsl = { h: angle1, s, l }
 
-  let newColor2: ColorFormats = {
-    hsl: { h: angle2, s, l }
-  }
+  const colorHsl2: Hsl = { h: angle2, s, l }
 
   if (format !== 'hsl') {
-    newColor1 = colorFormatConverter(newColor1.hsl, {
+    color1 = colorFormatConverter(colorHsl1, {
       currentFormat: 'hsl',
       targetFormat: [format]
-    })
+    })[format] as AnyFormat
 
-    newColor2 = colorFormatConverter(newColor2.hsl, {
+    color2 = colorFormatConverter(colorHsl2, {
       currentFormat: 'hsl',
       targetFormat: [format]
-    })
+    })[format] as AnyFormat
   }
 
-  return [color, newColor1[format], newColor2[format]]
+  return [color, color1, color2]
 }
 
 export { makeTriadicPalette }

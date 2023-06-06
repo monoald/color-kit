@@ -8,6 +8,9 @@ function makeTetradicPalette(color: BaseColor, variation = 0) {
   let h: number
   let s: number
   let v: number
+  let color1: AnyFormat
+  let color2: AnyFormat
+  let color3: AnyFormat
 
   // Get HSL value to manipulate Hue
   if (format === 'hsv') {
@@ -15,7 +18,7 @@ function makeTetradicPalette(color: BaseColor, variation = 0) {
   } else {
     ({ h, s, v } = colorFormatConverter(color, {
       currentFormat: format, targetFormat: ['hsv']
-    }).hsv)
+    }).hsv as Hsv)
   }
 
   // Calculate Tetradic colors
@@ -23,34 +26,28 @@ function makeTetradicPalette(color: BaseColor, variation = 0) {
   const hue2 = (h + 180) % 360
   const hue3 = (hue1 + 180) % 360
 
-  let newColor1: ColorFormats = {
-    hsv: { h: hue1, s, v}
-  }
-  let newColor2: ColorFormats = {
-    hsv: { h: hue2, s, v: 80 }
-  }
-  let newColor3: ColorFormats = {
-    hsv: { h: hue3, s, v: 40 }
-  }
+  const colorHsv1: Hsv = { h: hue1, s, v}
+  const colorHsv2: Hsv = { h: hue2, s, v: 80 }
+  const colorHsv3: Hsv = { h: hue3, s, v: 40 }
 
   if (format !== 'hsv') {
-    newColor1 = colorFormatConverter(newColor1.hsv, {
+    color1 = colorFormatConverter(colorHsv1, {
       currentFormat: 'hsv',
       targetFormat: [format]
-    })
-    newColor2 = colorFormatConverter(newColor2.hsv, {
+    })[format] as AnyFormat
+    color2 = colorFormatConverter(colorHsv2, {
       currentFormat: 'hsv',
       targetFormat: [format]
-    })
-    newColor3 = colorFormatConverter(newColor3.hsv, {
+    })[format] as AnyFormat
+    color3 = colorFormatConverter(colorHsv3, {
       currentFormat: 'hsv',
       targetFormat: [format]
-    })
+    })[format] as AnyFormat
   }
 
-  palette.push(newColor1[format])
-  palette.push(newColor2[format])
-  palette.push(newColor3[format])
+  palette.push(color1)
+  palette.push(color2)
+  palette.push(color3)
 
   return palette
 }

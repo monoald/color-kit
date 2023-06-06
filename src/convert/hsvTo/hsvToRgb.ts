@@ -12,11 +12,11 @@ function hsvToRgb({ h, s, v }: Hsv): Rgb {
   v /= 100
 
   // Calculate intermediate values
-  let i = Math.floor(h * 6)
-  let f = h * 6 - i
-  let p = v * (1 - s)
-  let q = v * (1 - f * s)
-  let t = v * (1 - (1 - f) * s)
+  const i = Math.floor(h * 6)
+  const f = h * 6 - i
+  const p = v * (1 - s)
+  const q = v * (1 - f * s)
+  const t = v * (1 - (1 - f) * s)
 
   // Determine the RGB values based on hue value
   let r: number

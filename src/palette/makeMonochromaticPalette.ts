@@ -9,6 +9,8 @@ function makeMonochromaticPalette(color: BaseColor, quantity = 3, variation = 20
   let r: number
   let g: number
   let b: number
+  let darker: AnyFormat
+  let brighter: AnyFormat
 
   // Get RGB value to manipulate color
   if (format === 'rgb') {
@@ -16,47 +18,43 @@ function makeMonochromaticPalette(color: BaseColor, quantity = 3, variation = 20
   } else {
     ({ r, g, b} = colorFormatConverter(color, {
       currentFormat: format, targetFormat: ['rgb']
-    }).rgb)
+    }).rgb as Rgb)
   }
 
   // Generate new colors
   for (let i = 0; i < iterations; i++) {
-    let darker: ColorFormats = {
-      rgb: {
-        r: Math.max(r - variation, 0),
-        g: Math.max(g - variation, 0),
-        b: Math.max(b - variation, 0)
-      }
+    const darkerRgb: Rgb = {
+      r: Math.max(r - variation, 0),
+      g: Math.max(g - variation, 0),
+      b: Math.max(b - variation, 0)
     }
 
     if (format !== 'rgb') {
-      darker = colorFormatConverter(darker.rgb, {
+      darker = colorFormatConverter(darkerRgb, {
         currentFormat: 'rgb',
         targetFormat: [format]
-      })
+      })[format] as AnyFormat
     }
 
-    palette.unshift(darker[format])
+    palette.unshift(darker)
 
     // Skip extra color if requested colors are even
     if (i + 0.5 === iterations) continue
 
-    let brighter: ColorFormats = {
-      rgb: {
-        r: Math.min(r + variation, 255),
-        g: Math.min(g + variation, 255),
-        b: Math.min(b + variation, 255)
-      }
+    const brighterRgb: Rgb = {
+      r: Math.min(r + variation, 255),
+      g: Math.min(g + variation, 255),
+      b: Math.min(b + variation, 255)
     }
 
     if (format !== 'rgb') {
-      brighter = colorFormatConverter(brighter.rgb, {
+      brighter = colorFormatConverter(brighterRgb, {
         currentFormat: 'rgb',
         targetFormat: [format]
-      })
+      })[format] as AnyFormat
     }
 
-    palette.push(brighter[format])
+    palette.push(brighter)
 
     // Change shadow variation
     variation += 20

@@ -8,6 +8,9 @@ function makeSquarePalette(color: BaseColor) {
   let h: number
   let s: number
   let l: number
+  let color1: AnyFormat
+  let color2: AnyFormat
+  let color3: AnyFormat
 
   // Get HSL value to manipulate Hue
   if (format === 'hsl') {
@@ -15,7 +18,7 @@ function makeSquarePalette(color: BaseColor) {
   } else {
     ({ h, s, l } = colorFormatConverter(color, {
       currentFormat: format, targetFormat: ['hsl']
-    }).hsl)
+    }).hsl as Hsl)
   }
 
   // Calculate Square colors
@@ -23,34 +26,28 @@ function makeSquarePalette(color: BaseColor) {
   const hue2 = (hue1 + 90) % 360
   const hue3 = (hue2 + 90) % 360
 
-  let newColor1: ColorFormats = {
-    hsl: { h: hue1, s, l}
-  }
-  let newColor2: ColorFormats = {
-    hsl: { h: hue2, s, l }
-  }
-  let newColor3: ColorFormats = {
-    hsl: { h: hue3, s, l }
-  }
+  const colorHsl1: Hsl = { h: hue1, s, l}
+  const colorHsl2: Hsl = { h: hue2, s, l }
+  const colorHsl3: Hsl = { h: hue3, s, l }
 
   if (format !== 'hsl') {
-    newColor1 = colorFormatConverter(newColor1.hsl, {
+    color1 = colorFormatConverter(colorHsl1, {
       currentFormat: 'hsl',
       targetFormat: [format]
-    })
-    newColor2 = colorFormatConverter(newColor2.hsl, {
+    })[format] as AnyFormat
+    color2 = colorFormatConverter(colorHsl2, {
       currentFormat: 'hsl',
       targetFormat: [format]
-    })
-    newColor3 = colorFormatConverter(newColor3.hsl, {
+    })[format] as AnyFormat
+    color3 = colorFormatConverter(colorHsl3, {
       currentFormat: 'hsl',
       targetFormat: [format]
-    })
+    })[format] as AnyFormat
   }
 
-  palette.push(newColor1[format])
-  palette.push(newColor2[format])
-  palette.push(newColor3[format])
+  palette.push(color1)
+  palette.push(color2)
+  palette.push(color3)
 
   return palette
 }

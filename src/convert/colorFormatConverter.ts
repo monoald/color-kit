@@ -18,7 +18,7 @@ function colorFormatConverter(
 
   const finalValue: ColorFormats = {}
 
-  targetFormats.map((format) => {
+  targetFormats?.map((format) => {
     // Exclude current format
     if (format === currentFormat) return
 

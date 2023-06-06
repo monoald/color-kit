@@ -16,7 +16,7 @@ function makeAnalogousPalette(color: BaseColor, quantity = 3, variation = 30): A
   } else {
     ({ h, s, l} = colorFormatConverter(color, {
       currentFormat: format, targetFormat: ['hsl']
-    }).hsl)
+    }).hsl as Hsl)
   }
 
   // Calculate total range of hues to cover
@@ -34,12 +34,11 @@ function makeAnalogousPalette(color: BaseColor, quantity = 3, variation = 30): A
       analogousHue += 30
     }
 
-    let newColor: ColorFormats = {
-      hsl: {h: analogousHue, s, l}
-    }
+    const newColorHsl: Hsl = { h: analogousHue, s, l }
+    let newColor: ColorFormats
 
     if (format !== 'hsl') {
-      newColor = colorFormatConverter(newColor.hsl, {
+      newColor = colorFormatConverter(newColorHsl, {
         currentFormat: 'hsl',
         targetFormat: [format]
       })

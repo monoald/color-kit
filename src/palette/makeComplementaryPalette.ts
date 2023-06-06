@@ -15,23 +15,22 @@ function makeComplementaryPalette(color: BaseColor): Array<AnyFormat> {
   } else {
     ({ h, s, l} = colorFormatConverter(color, {
       currentFormat: format, targetFormat: ['hsl']
-    }).hsl)
+    }).hsl as Hsl)
   }
 
   // Calculate complementary hue
   const complementaryHue = (h + 180) % 360
-  let complementaryRgb: ColorFormats = {
-    hsl: { h: complementaryHue, s, l }
-  }
+  const complementaryHsl: Hsl = { h: complementaryHue, s, l }
+  let complementaryColor: AnyFormat
 
   if (format !== 'hsl') {
-    complementaryRgb = colorFormatConverter(complementaryRgb.hsl, {
+    complementaryColor = colorFormatConverter(complementaryHsl, {
       currentFormat: 'hsl',
       targetFormat: [format]
-    })
+    })[format] as AnyFormat
   }
 
-  return [color, complementaryRgb[format]]
+  return [color, complementaryColor]
 }
 
 export { makeComplementaryPalette }

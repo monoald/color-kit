@@ -8,6 +8,10 @@ function makeSplitComplementaryPalette(color: BaseColor, quantity = 3) {
   let h: number
   let s: number
   let l: number
+  let complementary1: AnyFormat
+  let complementary2: AnyFormat
+  let complementarySplit1: AnyFormat
+  let complementarySplit2: AnyFormat
 
   // Get HSL value to manipulate Hue
   if (format === 'hsl') {
@@ -15,63 +19,56 @@ function makeSplitComplementaryPalette(color: BaseColor, quantity = 3) {
   } else {
     ({ h, s, l} = colorFormatConverter(color, {
       currentFormat: format, targetFormat: ['hsl']
-    }).hsl)
+    }).hsl as Hsl)
   }
 
   // Calculate split-complementary colors
   const hue1 = (h + 150) % 360
   const hue2 = (h - 150) % 360
 
-  let newColor1: ColorFormats = {
-    hsl: { h: hue1, s, l}
-  }
-  let newColor2: ColorFormats = {
-    hsl: { h: hue2, s, l}
-  }
+  const complementaryHsl1: Hsl = { h: hue1, s, l}
+  const complementaryHsl2: Hsl = { h: hue2, s, l}
 
   if (format !== 'hsl') {
-    newColor1 = colorFormatConverter(newColor1.hsl, {
+    complementary1 = colorFormatConverter(complementaryHsl1, {
       currentFormat: 'hsl',
       targetFormat: [format]
-    })
-    newColor2 = colorFormatConverter(newColor2.hsl, {
+    })[format] as AnyFormat
+
+    complementary2 = colorFormatConverter(complementaryHsl2, {
       currentFormat: 'hsl',
       targetFormat: [format]
-    })
+    })[format] as AnyFormat
   }
 
-  palette.push(newColor1[format])
-  palette.push(newColor2[format])
+  palette.push(complementary1)
+  palette.push(complementary2)
 
   // Add complementary colors
   if (quantity === 4) {
     const hue3 = (h + 165) % 360
-    let newSplitColor1: ColorFormats = {
-      hsl: { h: hue3, s, l}
-    }
+    const complementarySplitHsl1: Hsl = { h: hue3, s, l}
 
     if (format !== 'hsl') {
-      newSplitColor1 = colorFormatConverter(newSplitColor1.hsl, {
+      complementarySplit1 = colorFormatConverter(complementarySplitHsl1, {
         currentFormat: 'hsl',
         targetFormat: [format]
-      })
+      })[format] as AnyFormat
     }
-    palette.push(newSplitColor1[format])
+    palette.push(complementarySplit1)
   }
 
   if (quantity === 5) {
     const hue4 = (h - 165) % 360
-    let newSplitColor2: ColorFormats = {
-      hsl: { h: hue4, s, l}
-    }
+    const complementarySplitHsl2: Hsl = { h: hue4, s, l}
 
     if (format !== 'hsl') {
-      newSplitColor2 = colorFormatConverter(newSplitColor2.hsl, {
+      complementarySplit2 = colorFormatConverter(complementarySplitHsl2, {
         currentFormat: 'hsl',
         targetFormat: [format]
-      })
+      })[format] as AnyFormat
     }
-    palette.push(newSplitColor2[format])
+    palette.push(complementarySplit2)
   }
 
   return palette
