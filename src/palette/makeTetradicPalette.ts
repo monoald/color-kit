@@ -2,7 +2,7 @@ import { AnyFormat, BaseColor, ColorFormats, Hsv } from '../types'
 import { colorFormatConverter } from '../convert'
 import { identifyFormat } from '../utils/identifyFormat'
 
-function makeTetradicPalette(color: BaseColor, variation = 0) {
+function makeTetradicPalette(color: BaseColor, variation = 0): Array<AnyFormat> {
   const format = identifyFormat(color) as keyof ColorFormats
   const palette: Array<AnyFormat> = [color]
   let h: number

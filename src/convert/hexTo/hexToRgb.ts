@@ -1,7 +1,8 @@
+import { Rgb } from '../../types'
 import { hex3ToHex6 } from '../../utils/hex3ToHex6'
 import { validateHex } from '../../validate'
 
-function hexToRgb(hex: string) {
+function hexToRgb(hex: string): Rgb {
   validateHex(hex)
 
   // Normalize 3-digit Hex to 6-digit Hex

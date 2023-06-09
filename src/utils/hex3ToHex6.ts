@@ -1,4 +1,4 @@
-function hex3ToHex6(hex: string) {
+function hex3ToHex6(hex: string): string {
   // Extract values
   let hexR = hex.substring(1, 2)
   let hexG = hex.substring(2, 3)

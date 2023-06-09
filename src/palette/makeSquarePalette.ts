@@ -2,7 +2,7 @@ import { AnyFormat, BaseColor, ColorFormats, Hsl } from '../types'
 import { colorFormatConverter } from '../convert'
 import { identifyFormat } from '../utils/identifyFormat'
 
-function makeSquarePalette(color: BaseColor) {
+function makeSquarePalette(color: BaseColor): Array<AnyFormat> {
   const format = identifyFormat(color) as keyof ColorFormats
   const palette: Array<AnyFormat> = [color]
   let h: number

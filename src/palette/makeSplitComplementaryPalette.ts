@@ -2,7 +2,7 @@ import { AnyFormat, BaseColor, ColorFormats, Hsl } from '../types'
 import { colorFormatConverter } from '../convert'
 import { identifyFormat } from '../utils/identifyFormat'
 
-function makeSplitComplementaryPalette(color: BaseColor, quantity = 3) {
+function makeSplitComplementaryPalette(color: BaseColor, quantity = 3): Array<AnyFormat> {
   const format = identifyFormat(color) as keyof ColorFormats
   const palette: Array<AnyFormat> = [color]
   let h: number
