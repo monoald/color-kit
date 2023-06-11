@@ -1,9 +1,4 @@
 //--------------COLORS-----------
-export interface Rgb {
-  r: number
-  g: number
-  b: number
-}
 
 export interface Cmyk {
   c: number
@@ -12,6 +7,7 @@ export interface Cmyk {
   k: number
 }
 
+export type Hex = string
 export interface Hsl {
   h: number
   s: number
@@ -27,6 +23,12 @@ export interface Hsv {
 export interface Lab {
   l: number
   a: number
+  b: number
+}
+
+export interface Rgb {
+  r: number
+  g: number
   b: number
 }
 

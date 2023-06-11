@@ -5,7 +5,7 @@ import converter from './index'
 interface Options {
   currentFormat?: string
   targetFormat?: Array<string>
-  AllFormats?: boolean
+  allFormats?: boolean
   identifyFormat?: boolean
 }
 
@@ -14,7 +14,7 @@ function colorFormatConverter(
   options: Options
 ): ColorFormats {
   const currentFormat = options.identifyFormat ? identifyFormat(color) : options.currentFormat
-  const targetFormats = options.AllFormats ? ['cmyk', 'hex', 'hsl', 'hsv', 'lab', 'rgb', 'xyz'] : options.targetFormat
+  const targetFormats = options.allFormats ? ['cmyk', 'hex', 'hsl', 'hsv', 'lab', 'rgb', 'xyz'] : options.targetFormat
 
   const finalValue: ColorFormats = {}
 
