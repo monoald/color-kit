@@ -1,10 +1,10 @@
 import converter from '../convert'
-import { AnyFormat, BaseColor, ColorFormats, Rgb } from '../types'
+import { BaseColor, ColorFormats, Rgb } from '../types'
 import { identifyFormat } from '../utils/identifyFormat'
 
-function toAchromatomaly(color: BaseColor): AnyFormat {
+function toAchromatomaly(color: BaseColor): BaseColor {
   const format = identifyFormat(color) as keyof ColorFormats
-  let achromatomalyColor: AnyFormat
+  let achromatomalyColor: BaseColor
   let r: number
   let g: number
   let b: number
@@ -19,7 +19,7 @@ function toAchromatomaly(color: BaseColor): AnyFormat {
     }).rgb as Rgb)
   }
 
-  // Calculate Deuteranopia value
+  // Calculate Achromatomaly value
   const newRed = Math.floor((r * 0.618) + (g * 0.32) + (b * 0.062));
   const newGreen = Math.floor((r * 0.163) + (g * 0.775) + (b * 0.062));
   const newBlue = Math.floor((r * 0.163) + (g * 0.32) + (b * 0.516));
@@ -37,7 +37,7 @@ function toAchromatomaly(color: BaseColor): AnyFormat {
     achromatomalyColor = converter.colorFormatConverter(newColorRgb, {
       currentFormat: 'rgb',
       targetFormat: [format]
-    })[format] as AnyFormat
+    })[format] as BaseColor
   }
 
   return achromatomalyColor

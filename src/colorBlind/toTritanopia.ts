@@ -1,10 +1,10 @@
-import { AnyFormat, BaseColor, ColorFormats, Rgb } from '../types'
+import { BaseColor, ColorFormats, Rgb } from '../types'
 import converter from '../convert'
 import { identifyFormat } from '../utils/identifyFormat'
 
-function toTritanopia(color: BaseColor): AnyFormat {
+function toTritanopia(color: BaseColor): BaseColor {
   const format = identifyFormat(color) as keyof ColorFormats
-  let tritanopiaColor: AnyFormat
+  let tritanopiaColor: BaseColor
   let r: number
   let g: number
   let b: number
@@ -37,7 +37,7 @@ function toTritanopia(color: BaseColor): AnyFormat {
     tritanopiaColor = converter.colorFormatConverter(newColorRgb, {
       currentFormat: 'rgb',
       targetFormat: [format]
-    })[format] as AnyFormat
+    })[format] as BaseColor
   }
 
   return tritanopiaColor

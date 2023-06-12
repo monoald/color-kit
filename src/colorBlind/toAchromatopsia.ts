@@ -1,10 +1,10 @@
-import { AnyFormat, BaseColor, ColorFormats, Rgb } from '../types'
 import converter from '../convert'
+import { BaseColor, ColorFormats, Rgb } from '../types'
 import { identifyFormat } from '../utils/identifyFormat'
 
-function toAchromatopsia(color: BaseColor): AnyFormat {
+function toAchromatopsia(color: BaseColor): BaseColor {
   const format = identifyFormat(color) as keyof ColorFormats
-  let deuteranopiaColor: AnyFormat
+  let achromatopsiaColor: BaseColor
   let r: number
   let g: number
   let b: number
@@ -19,7 +19,7 @@ function toAchromatopsia(color: BaseColor): AnyFormat {
     }).rgb as Rgb)
   }
 
-  // Calculate Deuteranopia value
+  // Calculate Achromatopsia value
   const gray = Math.round((r + g + b) / 3)
 
   const newColorRgb = {
@@ -30,15 +30,15 @@ function toAchromatopsia(color: BaseColor): AnyFormat {
 
   // Convert to base format
   if (format === 'rgb') {
-    deuteranopiaColor = newColorRgb
+    achromatopsiaColor = newColorRgb
   } else {
-    deuteranopiaColor = converter.colorFormatConverter(newColorRgb, {
+    achromatopsiaColor = converter.colorFormatConverter(newColorRgb, {
       currentFormat: 'rgb',
       targetFormat: [format]
-    })[format] as AnyFormat
+    })[format] as BaseColor
   }
 
-  return deuteranopiaColor
+  return achromatopsiaColor
 }
 
 export { toAchromatopsia }

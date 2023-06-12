@@ -1,42 +1,32 @@
-import { AnyFormat, BaseColor } from '../types'
+import { BaseColor } from '../types'
 import colorBlind from '.'
 
-interface Options {
-  color?: BaseColor
-  colorBlindness?: string
-}
+function toColorBlind(color: BaseColor, colorBlindness: string): BaseColor {
 
-function toColorBlind(options: Options): AnyFormat {
-  let color: AnyFormat = '#000000'
-
-  if (options.color === undefined || options.color === null) {
-    return color
-  }
-
-  switch (options.colorBlindness) {
+  switch (colorBlindness) {
     case 'achromatomaly':
-      color = colorBlind.toAchromatomaly(options.color)
+      color = colorBlind.toAchromatomaly(color)
       break
     case 'achromatopsia':
-      color = colorBlind.toAchromatopsia(options.color)
+      color = colorBlind.toAchromatopsia(color)
       break
     case 'deuteranomaly':
-        color = colorBlind.toDeuteranomaly(options.color)
+        color = colorBlind.toDeuteranomaly(color)
       break
     case 'deuteranopia':
-      color = colorBlind.toDeuteranopia(options.color)
+      color = colorBlind.toDeuteranopia(color)
       break
     case 'protanomaly':
-      color = colorBlind.toProtanomaly(options.color)
+      color = colorBlind.toProtanomaly(color)
       break
     case 'protanopia':
-      color = colorBlind.toProtanopia(options.color)
+      color = colorBlind.toProtanopia(color)
       break
     case 'tritanomaly':
-      color = colorBlind.toTritanomaly(options.color)
+      color = colorBlind.toTritanomaly(color)
       break
     case 'tritanopia':
-      color = colorBlind.toTritanopia(options.color)
+      color = colorBlind.toTritanopia(color)
       break
     default:
       throw new Error('Invalid color blindness.')

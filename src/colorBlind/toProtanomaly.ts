@@ -1,10 +1,10 @@
-import { AnyFormat, BaseColor, ColorFormats, Rgb } from '../types'
+import { BaseColor, ColorFormats, Rgb } from '../types'
 import converter from '../convert'
 import { identifyFormat } from '../utils/identifyFormat'
 
-function toProtanomaly(color: BaseColor): AnyFormat {
+function toProtanomaly(color: BaseColor): BaseColor {
   const format = identifyFormat(color) as keyof ColorFormats
-  let protanomalyColor: AnyFormat
+  let protanomalyColor: BaseColor
   let r: number
   let g: number
   let b: number
@@ -19,7 +19,7 @@ function toProtanomaly(color: BaseColor): AnyFormat {
     }).rgb as Rgb)
   }
 
-  // Calculate Deuteranomaly values
+  // Calculate Protanomaly values
   const newRed = Math.floor((0.817 * r) + (0.183 * g))
   const newGreen = Math.floor((0.333 * r) + (0.667 * g))
   const newBlue = Math.floor((0.125 * g) + (0.875 * b))
@@ -37,7 +37,7 @@ function toProtanomaly(color: BaseColor): AnyFormat {
     protanomalyColor = converter.colorFormatConverter(newColorRgb, {
       currentFormat: 'rgb',
       targetFormat: [format]
-    })[format] as AnyFormat
+    })[format] as BaseColor
   }
 
   return protanomalyColor
