@@ -1,16 +1,16 @@
-import { AnyFormat, BaseColor, ColorFormats, Rgb } from '../types'
+import { BaseColor, ColorFormats, Rgb } from '../types'
 import { colorFormatConverter } from '../convert'
 import { identifyFormat } from '../utils/identifyFormat'
 
-function makeMonochromaticPalette(color: BaseColor, quantity = 3, variation = 20): Array<AnyFormat> {
+function makeMonochromaticPalette(color: BaseColor, quantity = 3, variation = 20): Array<BaseColor> {
   const format = identifyFormat(color) as keyof ColorFormats
-  const palette: Array<AnyFormat> = [color]
+  const palette: Array<BaseColor> = [color]
   const iterations = (quantity - 1) / 2
   let r: number
   let g: number
   let b: number
-  let darker: AnyFormat
-  let brighter: AnyFormat
+  let darker: BaseColor
+  let brighter: BaseColor
 
   // Get RGB value to manipulate color
   if (format === 'rgb') {
@@ -33,7 +33,7 @@ function makeMonochromaticPalette(color: BaseColor, quantity = 3, variation = 20
       darker = colorFormatConverter(darkerRgb, {
         currentFormat: 'rgb',
         targetFormat: [format]
-      })[format] as AnyFormat
+      })[format] as BaseColor
     }
 
     palette.unshift(darker)
@@ -51,7 +51,7 @@ function makeMonochromaticPalette(color: BaseColor, quantity = 3, variation = 20
       brighter = colorFormatConverter(brighterRgb, {
         currentFormat: 'rgb',
         targetFormat: [format]
-      })[format] as AnyFormat
+      })[format] as BaseColor
     }
 
     palette.push(brighter)

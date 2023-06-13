@@ -1,17 +1,17 @@
-import { AnyFormat, BaseColor, ColorFormats, Hsl } from '../types'
+import { BaseColor, ColorFormats, Hsl } from '../types'
 import { colorFormatConverter } from '../convert'
 import { identifyFormat } from '../utils/identifyFormat'
 
-function makeSplitComplementaryPalette(color: BaseColor, quantity = 3): Array<AnyFormat> {
+function makeSplitComplementaryPalette(color: BaseColor, quantity = 3): Array<BaseColor> {
   const format = identifyFormat(color) as keyof ColorFormats
-  const palette: Array<AnyFormat> = [color]
+  const palette: Array<BaseColor> = [color]
   let h: number
   let s: number
   let l: number
-  let complementary1: AnyFormat
-  let complementary2: AnyFormat
-  let complementarySplit1: AnyFormat
-  let complementarySplit2: AnyFormat
+  let complementary1: BaseColor
+  let complementary2: BaseColor
+  let complementarySplit1: BaseColor
+  let complementarySplit2: BaseColor
 
   // Get HSL value to manipulate Hue
   if (format === 'hsl') {
@@ -33,12 +33,12 @@ function makeSplitComplementaryPalette(color: BaseColor, quantity = 3): Array<An
     complementary1 = colorFormatConverter(complementaryHsl1, {
       currentFormat: 'hsl',
       targetFormat: [format]
-    })[format] as AnyFormat
+    })[format] as BaseColor
 
     complementary2 = colorFormatConverter(complementaryHsl2, {
       currentFormat: 'hsl',
       targetFormat: [format]
-    })[format] as AnyFormat
+    })[format] as BaseColor
   }
 
   palette.push(complementary1)
@@ -53,7 +53,7 @@ function makeSplitComplementaryPalette(color: BaseColor, quantity = 3): Array<An
       complementarySplit1 = colorFormatConverter(complementarySplitHsl1, {
         currentFormat: 'hsl',
         targetFormat: [format]
-      })[format] as AnyFormat
+      })[format] as BaseColor
     }
     palette.push(complementarySplit1)
   }
@@ -66,7 +66,7 @@ function makeSplitComplementaryPalette(color: BaseColor, quantity = 3): Array<An
       complementarySplit2 = colorFormatConverter(complementarySplitHsl2, {
         currentFormat: 'hsl',
         targetFormat: [format]
-      })[format] as AnyFormat
+      })[format] as BaseColor
     }
     palette.push(complementarySplit2)
   }

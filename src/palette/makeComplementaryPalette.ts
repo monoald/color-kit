@@ -1,9 +1,9 @@
-import { AnyFormat, BaseColor, ColorFormats, Hsl } from '../types'
+import { BaseColor, ColorFormats, Hsl } from '../types'
 import { colorFormatConverter } from '../convert'
 import { identifyFormat } from '../utils/identifyFormat'
 
 
-function makeComplementaryPalette(color: BaseColor): Array<AnyFormat> {
+function makeComplementaryPalette(color: BaseColor): Array<BaseColor> {
   const format = identifyFormat(color) as keyof ColorFormats
   let h: number
   let s: number
@@ -21,13 +21,13 @@ function makeComplementaryPalette(color: BaseColor): Array<AnyFormat> {
   // Calculate complementary hue
   const complementaryHue = (h + 180) % 360
   const complementaryHsl: Hsl = { h: complementaryHue, s, l }
-  let complementaryColor: AnyFormat
+  let complementaryColor: BaseColor
 
   if (format !== 'hsl') {
     complementaryColor = colorFormatConverter(complementaryHsl, {
       currentFormat: 'hsl',
       targetFormat: [format]
-    })[format] as AnyFormat
+    })[format] as BaseColor
   }
 
   return [color, complementaryColor]

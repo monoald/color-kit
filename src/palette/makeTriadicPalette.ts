@@ -1,14 +1,14 @@
-import { AnyFormat, BaseColor, ColorFormats, Hsl } from '../types'
+import { BaseColor, ColorFormats, Hsl } from '../types'
 import { colorFormatConverter } from '../convert'
 import { identifyFormat } from '../utils/identifyFormat'
 
-function makeTriadicPalette(color: BaseColor): Array<AnyFormat> {
+function makeTriadicPalette(color: BaseColor): Array<BaseColor> {
   const format = identifyFormat(color) as keyof ColorFormats
   let h: number
   let s: number
   let l: number
-  let color1: AnyFormat
-  let color2: AnyFormat
+  let color1: BaseColor
+  let color2: BaseColor
 
   // Get HSL value to manipulate Hue
   if (format === 'hsl') {
@@ -32,12 +32,12 @@ function makeTriadicPalette(color: BaseColor): Array<AnyFormat> {
     color1 = colorFormatConverter(colorHsl1, {
       currentFormat: 'hsl',
       targetFormat: [format]
-    })[format] as AnyFormat
+    })[format] as BaseColor
 
     color2 = colorFormatConverter(colorHsl2, {
       currentFormat: 'hsl',
       targetFormat: [format]
-    })[format] as AnyFormat
+    })[format] as BaseColor
   }
 
   return [color, color1, color2]

@@ -1,10 +1,10 @@
-import { AnyFormat, BaseColor, ColorFormats, Hsl } from '../types'
+import { BaseColor, ColorFormats, Hsl } from '../types'
 import { colorFormatConverter } from '../convert'
 import { identifyFormat } from '../utils/identifyFormat'
 
-function makeAnalogousPalette(color: BaseColor, quantity = 3, variation = 30): Array<AnyFormat> {
+function makeAnalogousPalette(color: BaseColor, quantity = 3, variation = 30): Array<BaseColor> {
   const format = identifyFormat(color) as keyof ColorFormats
-  const palette: Array<AnyFormat> = []
+  const palette: Array<BaseColor> = []
   quantity -= 1
   let h: number
   let s: number
@@ -43,7 +43,7 @@ function makeAnalogousPalette(color: BaseColor, quantity = 3, variation = 30): A
         targetFormat: [format]
       })
     }
-    palette.push(newColor[format])
+    palette.push(newColor[format] as BaseColor)
   }
 
   // Add base color to palette

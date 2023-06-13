@@ -1,16 +1,16 @@
-import { AnyFormat, BaseColor, ColorFormats, Hsv } from '../types'
+import { BaseColor, ColorFormats, Hsv } from '../types'
 import { colorFormatConverter } from '../convert'
 import { identifyFormat } from '../utils/identifyFormat'
 
-function makeTetradicPalette(color: BaseColor, variation = 0): Array<AnyFormat> {
+function makeTetradicPalette(color: BaseColor): Array<BaseColor> {
   const format = identifyFormat(color) as keyof ColorFormats
-  const palette: Array<AnyFormat> = [color]
+  const palette: Array<BaseColor> = [color]
   let h: number
   let s: number
   let v: number
-  let color1: AnyFormat
-  let color2: AnyFormat
-  let color3: AnyFormat
+  let color1: BaseColor
+  let color2: BaseColor
+  let color3: BaseColor
 
   // Get HSL value to manipulate Hue
   if (format === 'hsv') {
@@ -34,15 +34,15 @@ function makeTetradicPalette(color: BaseColor, variation = 0): Array<AnyFormat> 
     color1 = colorFormatConverter(colorHsv1, {
       currentFormat: 'hsv',
       targetFormat: [format]
-    })[format] as AnyFormat
+    })[format] as BaseColor
     color2 = colorFormatConverter(colorHsv2, {
       currentFormat: 'hsv',
       targetFormat: [format]
-    })[format] as AnyFormat
+    })[format] as BaseColor
     color3 = colorFormatConverter(colorHsv3, {
       currentFormat: 'hsv',
       targetFormat: [format]
-    })[format] as AnyFormat
+    })[format] as BaseColor
   }
 
   palette.push(color1)

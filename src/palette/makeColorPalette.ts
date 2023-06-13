@@ -1,6 +1,6 @@
 import palette from ".";
 import { getRandomColor } from "../random";
-import { AnyFormat, BaseColor, ColorFormats } from "../types";
+import { BaseColor, ColorFormats } from "../types";
 
 export type PaletteType = 'analogous' | 'complementary' | 'monochromatic' | 'split-complementary' | 'square' | 'tetradic' | 'triadic'
 
@@ -8,16 +8,16 @@ interface Options {
   randomColor?: boolean
   color?: BaseColor
   format: string
-  paletteType?: PaletteType
+  paletteType: PaletteType
   quantity?: number,
   variation?: number
 }
 
-function makeColorPalette(options: Options): Array<AnyFormat> {
+function makeColorPalette(options: Options): Array<BaseColor> {
   const format = options.format as keyof ColorFormats
   const variation = options.variation ? options.variation : 0
   let color: BaseColor
-  let colorPalette: Array<AnyFormat>
+  let colorPalette: Array<BaseColor>
 
   // Get base color
   if (options.randomColor) {
@@ -54,7 +54,7 @@ function makeColorPalette(options: Options): Array<AnyFormat> {
       colorPalette = palette.makeSquarePalette(color)
       break;
       case 'tetradic':
-      colorPalette = palette.makeTetradicPalette(color, options.quantity)
+      colorPalette = palette.makeTetradicPalette(color)
       break;
     case 'triadic':
       colorPalette = palette.makeTriadicPalette(color)
