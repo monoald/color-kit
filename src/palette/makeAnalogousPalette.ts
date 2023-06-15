@@ -2,10 +2,9 @@ import { BaseColor, ColorFormats, Hsl } from '../types'
 import { colorFormatConverter } from '../convert'
 import { identifyFormat } from '../utils/identifyFormat'
 
-function makeAnalogousPalette(color: BaseColor, quantity = 3, variation = 30): Array<BaseColor> {
+function makeAnalogousPalette(color: BaseColor, quantity = 3, variation = 40): Array<BaseColor> {
   const format = identifyFormat(color) as keyof ColorFormats
   const palette: Array<BaseColor> = []
-  quantity -= 1
   let h: number
   let s: number
   let l: number
@@ -19,22 +18,15 @@ function makeAnalogousPalette(color: BaseColor, quantity = 3, variation = 30): A
     }).hsl as Hsl)
   }
 
-  // Calculate total range of hues to cover
-  const range = (quantity - 1) * variation
-
-  // Calculate starting hue
-  const startHue = (h - range / 1.5 + 360) % 360
+  let hue = h
 
   // Generate new colors
   for (let i = 0; i < quantity; i++) {
-    let analogousHue = (startHue + i * variation) % 360
+      hue += variation
 
-    // Skip base color
-    if (analogousHue >= h) {
-      analogousHue += 30
-    }
+      hue = hue > 360 ? hue - 360 : hue
 
-    const newColorHsl: Hsl = { h: analogousHue, s, l }
+    const newColorHsl: Hsl = { h: hue, s, l }
     let newColor: ColorFormats
 
     if (format !== 'hsl') {
@@ -45,9 +37,6 @@ function makeAnalogousPalette(color: BaseColor, quantity = 3, variation = 30): A
     }
     palette.push(newColor[format] as BaseColor)
   }
-
-  // Add base color to palette
-  palette.splice(Math.ceil(palette.length / 2), 0, color)
 
   return palette
 }
