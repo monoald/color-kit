@@ -24,7 +24,7 @@ function euclideanDistance(a: Color, b: Color): number {
 }
 
 // Check if two arrays are equal
-function arraysEqual(array1: Colors[], array2: Colors[]): boolean {
+function arraysEqual(array1: any[], array2: any[]): boolean {
   if (array1 === array2) {
     return true
   } else if (

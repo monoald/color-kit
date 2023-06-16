@@ -10,7 +10,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "copy-types": "copyfiles -u 1 \"src/**/*.d.ts\" dist",
-    "build": "rm -rf dist/ && npx tsc && npx tsc --module CommonJS --outdir dist/"
+    "build": "rm -rf dist/ && npx tsc && npx tsc --module CommonJS --outdir dist/ && npm run copy-types"
   },
   "author": "monoald",
   "license": "ISC",

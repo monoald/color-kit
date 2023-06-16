@@ -5,3 +5,5 @@ export * from './palette'
 export * from './random'
 export * from './rate/rateContrast'
 export * from './validate'
+
+export * from './types'
