@@ -1,6 +1,9 @@
-# colors-kit
+---
+layout: ../layouts/Page.astro
+title: "Astro for Docs"
+---
 
-colors-kit is a zero-dependency module that can help you with a variety of color related tasks, such as:
+Colors-kit is a zero-dependency module that can help you with a variety of color related tasks, such as:
 
 - Converting colors between different formats.
 - Creating color palettes.
@@ -52,11 +55,13 @@ rgbToHex({ r: 66, g: 211, b: 122 })
 
 The Random API can create a random color in any of the seven formats the library handles.
 
+```js
 getRandomLab()
 // Expected output: { l: 45, a: -81, b: 67 }
 
 getRandomHsv()
 // Expected output: { h: 284, s: 100, v: 13 }
+```
 
 ### Color Blind
 
@@ -87,12 +92,6 @@ makeMonochromaticPalette({ r: 2, g: 69, b: 0 }, 2)
 //  { r: 22, g: 89, b: 12 }
 // ]
 ```
-
-makeMonochromaticPalette({ r: 2, g: 69, b: 0 }, 2)
-// Expected output: [
-//  { r: 2, g: 69, b: 0 },
-//  { r: 22, g: 89, b: 12 }
-// ]
 
 ### From Image
 
@@ -129,7 +128,7 @@ rateContrast(['#002719', '#c49c1a'])
 //     largeText: true,
 //     uiComponent: true
 //   }
-}
+// }
 ```
 
 ## Typescript 
