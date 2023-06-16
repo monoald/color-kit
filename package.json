@@ -1,7 +1,7 @@
 {
-  "name": "colors",
+  "name": "colors-js",
   "version": "1.0.0",
-  "description": "",
+  "description": "colors-js is a zero-dependency module that can help you with a variety of color related tasks",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
