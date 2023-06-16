@@ -1,7 +1,7 @@
 {
-  "name": "colors-js",
+  "name": "colors-kit",
   "version": "1.0.0",
-  "description": "colors-js is a zero-dependency module that can help you with a variety of color related tasks",
+  "description": "color-kit is a zero-dependency module that can help you with a variety of color related tasks",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [

@@ -1,6 +1,6 @@
-# colors-js
+# color-kit
 
-colors-js is a zero-dependency module that can help you with a variety of color related tasks, such as:
+color-kit is a zero-dependency module that can help you with a variety of color related tasks, such as:
 
 - Converting colors between different formats.
 - Creating color palettes.
@@ -12,7 +12,7 @@ colors-js is a zero-dependency module that can help you with a variety of color 
 ## Installation
 
 ```
-npm install colors-js
+npm install color-kit
 ```
 
 ## Usage
