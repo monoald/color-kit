@@ -1,6 +1,6 @@
-# color-kit
+# colors-kit
 
-color-kit is a zero-dependency module that can help you with a variety of color related tasks, such as:
+colors-kit is a zero-dependency module that can help you with a variety of color related tasks, such as:
 
 - Converting colors between different formats.
 - Creating color palettes.
@@ -12,7 +12,7 @@ color-kit is a zero-dependency module that can help you with a variety of color 
 ## Installation
 
 ```
-npm install color-kit
+npm install colors-kit
 ```
 
 ## Usage
