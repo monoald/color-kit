@@ -1,3 +1,8 @@
+/**
+ * Generates a random Hexadecimal color.
+ * 
+ * @returns {string} A Hexadecimal color.
+*/
 function getRandomHex(): string {
   // Get random integer between 0 and 16777215 (decimal equivalent of FFFFFF)
   const randomInt = Math.floor(Math.random() * 16777216)

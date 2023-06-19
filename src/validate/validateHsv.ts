@@ -1,6 +1,12 @@
 import { Hsv } from '../types'
 
-export function validateHsv(hsv: Hsv): void {
+/**
+ * Validates HSV color hue to be between 0 and 360, and saturation and brightness to be between 0 and 100.
+ * 
+ * @param {Hsv} hsv - HSV color.
+ * @throws {Error} If a HSV value is missing, is not a number, or is outside of its respective range.
+*/
+function validateHsv(hsv: Hsv): void {
   const { h, s, v } = hsv
 
   // Check if values are not numbers
@@ -25,3 +31,5 @@ export function validateHsv(hsv: Hsv): void {
     throw new Error('The brightness (v) value is not valid. Brightness value must be between 0 and 100.')
   }
 }
+
+export { validateHsv }

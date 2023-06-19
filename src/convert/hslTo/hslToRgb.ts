@@ -11,8 +11,14 @@ const hue2rgb = (p: number, q: number, t: number) => {
   return p;
 }
 
+/**
+ * Converts an HSL color to RGB format.
+ * 
+ * @param {Hsl} hsl - HSL color.
+ * @returns {Rgb} An RGB color.
+ * @throws {Error} If a HSL value is missing, is not a number, or is outside of its respective range.
+*/
 function hslToRgb({ h, s, l }: Hsl): Rgb {
-
   // Normalize values to a range of range 0 to 1
   h /= 360
   s /= 100

@@ -1,3 +1,9 @@
+/**
+ * Converts a hexadecimal color of three characters to a hexadecimal color of six characters.
+ *
+ * @param {string} hex - A three character hexadecimal color.
+ * @returns {string} A six character hexadecimal color.
+*/
 function hex3ToHex6(hex: string): string {
   // Extract values
   let hexR = hex.substring(1, 2)

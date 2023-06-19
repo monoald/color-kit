@@ -1,4 +1,10 @@
-export function validateHex(hex: string ): void {
+/**
+ * Validates a Hexadecimal color to be a string with 4 or 7 hexadecimal characters, including the hash (#) symbol.
+ * 
+ * @param {string} hex - Hexadecimal color.
+ * @throws {Error} If the string has a length different from 4 or 7, it does not include the hash (#) symbol at the beginning or includes letters outside of the hexadecimal values.
+*/
+function validateHex(hex: string ): void {
   let value: string
 
   if (hex.length === 7 || hex.length === 4) {
@@ -18,3 +24,5 @@ export function validateHex(hex: string ): void {
     throw new Error('A Hexadecimal color should have numbers between 0-9 and letter between a-f.')
   } 
 }
+
+export { validateHex }

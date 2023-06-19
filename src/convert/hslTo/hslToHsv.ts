@@ -1,6 +1,13 @@
 import { Hsl, Hsv } from '../../types'
 import { validateHsl } from '../../validate';
 
+/**
+ * Converts an HSL color to HSV format.
+ * 
+ * @param {Hsl} hsl - HSL color.
+ * @returns {Hsv} An HSV color.
+ * @throws {Error} If a HSL value is missing, is not a number, or is outside of its respective range.
+*/
 function hslToHsv({ h, s, l }: Hsl): Hsv {
   validateHsl({ h, s, l })
 

@@ -1,6 +1,13 @@
 import { Rgb, Cmyk } from '../../types'
 import { validateRgb } from '../../validate'
 
+/**
+ * Converts an RGB color to CMYK format.
+ * 
+ * @param {Rgb} rgb - RGB color.
+ * @returns {Cmyk} A CMYK color.
+ * @throws {Error} If a RGB value is missing, is not a number, or is outside of its respective range.
+*/
 function rgbToCmyk({ r, g, b }: Rgb): Cmyk {
   validateRgb({ r, g, b })
 

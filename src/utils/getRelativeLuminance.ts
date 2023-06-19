@@ -1,5 +1,11 @@
 import { Rgb } from '../types'
 
+/**
+ * Calculates the relative luminance of an rgb color.
+ *
+ * @param {Rgb} color - The color to calulate the relative luminance from.
+ * @returns {number} The realtive luminance.
+*/
 function getRelativeLuminance(color: Rgb): number {
   const r = color.r / 255
   const g = color.g / 255

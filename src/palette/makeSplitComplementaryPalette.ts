@@ -2,6 +2,14 @@ import { BaseColor, ColorFormats, Hsl } from '../types'
 import { colorFormatConverter } from '../convert'
 import { identifyFormat } from '../utils/identifyFormat'
 
+/**
+ * Creates a split-complementary color palette from a base color.
+ * 
+ * @param {BaseColor} color - The base color to create the color palette.
+ * @param {number} quantity - The number of colors to be part of the palette, by default 3.
+ * @returns {Array<BaseColor>} An array of colors that make a color palette.
+ * @throws {Error} If the parameter color does not follow its format requirements.
+*/
 function makeSplitComplementaryPalette(color: BaseColor, quantity = 3): Array<BaseColor> {
   const format = identifyFormat(color) as keyof ColorFormats
   const palette: Array<BaseColor> = [color]

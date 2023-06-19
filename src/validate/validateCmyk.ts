@@ -1,6 +1,12 @@
 import { Cmyk } from '../types'
 
-export function validateCmyk(cmyk: Cmyk): void {
+/**
+ * Validates CMYK color values to be between 0 and 100.
+ * 
+ * @param {Cmyk} cmyk - CMYK color.
+ * @throws {Error} If a CMYK value is missing, is not a number, or is outside the range of 0 to 100.
+*/
+function validateCmyk(cmyk: Cmyk): void {
   const { c, m, y, k } = cmyk
 
   // Check if values are not numbers
@@ -31,3 +37,5 @@ export function validateCmyk(cmyk: Cmyk): void {
     throw new Error('The key (k) value is not valid. Key value must be between 0 and 100.')
   }
 }
+
+export { validateCmyk }

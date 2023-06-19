@@ -2,6 +2,13 @@ import { Cmyk, Lab } from '../../types'
 import { rgbToXyz } from '../rgbTo'
 import { cmykToRgb } from './cmykToRgb'
 
+/**
+ * Converts a CMYK color to LAB format.
+ * 
+ * @param {Cmyk} cmyk - CMYK color.
+ * @returns {Lab} An LAB color.
+ * @throws {Error} If a CMYK value is missing, is not a number, or is outside the range of 0 to 100.
+*/
 function cmykToLab(cmyk: Cmyk): Lab {
   // Convert CMYK to RGB
   const rgb =  cmykToRgb(cmyk)

@@ -2,6 +2,13 @@ import { Rgb, Lab } from '../../types'
 import { validateRgb } from '../../validate'
 import { rgbToXyz } from './rgbToXyz'
 
+/**
+ * Converts an RGB color to LAB format.
+ * 
+ * @param {Rgb} rgb - RGB color.
+ * @returns {Lab} A LAB color.
+ * @throws {Error} If a RGB value is missing, is not a number, or is outside of its respective range.
+*/
 function rgbToLab(rgb: Rgb): Lab {
   validateRgb(rgb)
 

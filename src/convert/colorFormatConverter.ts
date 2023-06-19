@@ -9,6 +9,18 @@ interface Options {
   identifyFormat?: boolean
 }
 
+/**
+ * Generates a random color.
+ * 
+ * @param {BaseColor} color - A color in any format of the BaseColor formats.
+ * @param {Options} options - The options to convert a color to other format.
+ * @param {Array<string>} options.currentFormat - The current formats of the color.
+ * @param {Array<string>} options.targetFormats - The formats to convert the color.
+ * @param {boolean} options.allFormats - Whether to convert a color in all available formats.
+ * @param {Array<string>} options.identifyFormat - If no currentFormat is sent, the format could be identified.
+ * @returns {ColorFormats} An object with a color in different formats.
+ * @throws {Error} If the parameter color does not follow its format requirements.
+*/
 function colorFormatConverter(
   color: BaseColor,
   options: Options

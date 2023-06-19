@@ -1,7 +1,15 @@
-import { BaseColor } from '../types'
+import { BaseColor, ColorBlindness } from '../types'
 import colorBlind from '.'
 
-function toColorBlind(color: BaseColor, colorBlindness: string): BaseColor {
+/**
+ * Simulate Tritanopia color blindness.
+ * 
+ * @param {BaseColor} color - The color to be simulated.
+ * @param {ColorBlindness} colorBlindness - The color blindness type to simulate.
+ * @returns {BaseColor} A color blindness simulation of the input color.
+ * @throws {Error} If the parameter color does not follow its format requirements.
+*/
+function toColorBlind(color: BaseColor, colorBlindness: ColorBlindness): BaseColor {
 
   switch (colorBlindness) {
     case 'achromatomaly':

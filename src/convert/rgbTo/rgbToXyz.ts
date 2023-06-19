@@ -1,6 +1,13 @@
 import { Rgb, Xyz } from '../../types'
 import { validateRgb } from '../../validate'
 
+/**
+ * Converts an RGB color to XYZ format.
+ * 
+ * @param {Rgb} rgb - RGB color.
+ * @returns {Xyz} A XYZ color.
+ * @throws {Error} If a RGB value is missing, is not a number, or is outside of its respective range.
+*/
 function rgbToXyz(rgb: Rgb): Xyz {
   validateRgb(rgb)
 

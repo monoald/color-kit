@@ -230,6 +230,14 @@ function kMeansColors(data: Colors, k: number): Array<Rgb> {
   return colors
 }
 
+/**
+ * Extract colors from an image.
+ * 
+ * @param {string} url - The URL of the image to extract the colors from.
+ * @param {number} quantity - The number of colors to extract.
+ * @returns {Promise<Array<Rgb>>} A promise with an array of rgb colors extracted from the image.
+ * @throws {Error} If the URL is invalid, or do not contain an image.
+*/
 ///------------------IMAGE READER------------------///
 export function extractPalette(url: string, quantity: number): Promise<Rgb[]> {
   return new Promise((resolve, reject) => {

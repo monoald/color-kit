@@ -2,6 +2,13 @@ import { Rgb } from '../../types'
 import { hex3ToHex6 } from '../../utils/hex3ToHex6'
 import { validateHex } from '../../validate'
 
+/**
+ * Converts a Hexadecimal color to RGB format.
+ * 
+ * @param {string} hex - Hexadecimal color.
+ * @returns {Rgb} An RGB color.
+ * @throws {Error} If the string has a length different from 4 or 7, it does not include the hash (#) symbol at the beginning or includes letters outside of the hexadecimal values.
+*/
 function hexToRgb(hex: string): Rgb {
   validateHex(hex)
 

@@ -1,6 +1,13 @@
 import { Rgb, Hsl } from '../../types'
 import { validateRgb } from '../../validate'
 
+/**
+ * Converts an RGB color to HSL format.
+ * 
+ * @param {Rgb} rgb - RGB color.
+ * @returns {Hsl} A HSL color.
+ * @throws {Error} If a RGB value is missing, is not a number, or is outside of its respective range.
+*/
 function rgbToHsl(rgb: Rgb): Hsl {
   validateRgb(rgb)
 

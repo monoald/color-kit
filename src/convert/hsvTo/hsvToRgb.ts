@@ -1,6 +1,13 @@
 import { Hsv, Rgb } from '../../types'
 import { validateHsv } from '../../validate'
 
+/**
+ * Converts an HSV color to RGB format.
+ * 
+ * @param {Hsv} hsv - HSV color.
+ * @returns {Rgb} A RGB color.
+ * @throws {Error} If a HSV value is missing, is not a number, or is outside of its respective range.
+*/
 function hsvToRgb({ h, s, v }: Hsv): Rgb {
   validateHsv({ h, s, v })
 

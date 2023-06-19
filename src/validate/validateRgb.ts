@@ -1,6 +1,12 @@
 import { Rgb } from '../types'
 
-export function validateRgb(rgb: Rgb): void {
+/**
+ * Validates RGB color value to be between 0 and 255.
+ * 
+ * @param {Rgb} rgb - RGB color.
+ * @throws {Error} If a RGB value is missing, is not a number, or is outside of its respective range.
+*/
+function validateRgb(rgb: Rgb): void {
   const { r, g, b } = rgb
 
   // Check if values are not numbers
@@ -25,3 +31,5 @@ export function validateRgb(rgb: Rgb): void {
     throw new Error('The blue (b) value is not valid. Blue value must be between 0 and 255.')
   }
 }
+
+export { validateRgb }

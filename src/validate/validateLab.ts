@@ -1,6 +1,12 @@
 import { Lab } from '../types'
 
-export function validateLab(lab: Lab): void {
+/**
+ * Validates LAB color lightness to be between 0 and 100, and channels A and B to be between -128 and 127.
+ * 
+ * @param {Lab} lab - LAB color.
+ * @throws {Error} If a LAB value is missing, is not a number, or is outside of its respective range.
+*/
+function validateLab(lab: Lab): void {
   const { l, a, b } = lab
 
   // Check if values are not numbers
@@ -25,3 +31,5 @@ export function validateLab(lab: Lab): void {
     throw new Error('The b value is not valid. B value must be between -128 and 127.')
   }
 }
+
+export { validateLab }

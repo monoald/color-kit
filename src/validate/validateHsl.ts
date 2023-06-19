@@ -1,6 +1,12 @@
 import { Hsl } from '../types'
 
-export function validateHsl(hsl: Hsl): void {
+/**
+ * Validates HSL color hue to be between 0 and 360, and saturation and lightness to be between 0 and 100.
+ * 
+ * @param {Hsl} hsl - HSL color.
+ * @throws {Error} If a HSL value is missing, is not a number, or is outside of its respective range.
+*/
+function validateHsl(hsl: Hsl): void {
   const { h, s, l } = hsl
 
   // Check if values are not numbers
@@ -25,3 +31,5 @@ export function validateHsl(hsl: Hsl): void {
     throw new Error('The lightness (l) value is not valid. Lightness value must be between 0 and 100.')
   }
 }
+
+export { validateHsl }

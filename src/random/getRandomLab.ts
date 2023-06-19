@@ -1,5 +1,10 @@
 import { Lab } from '../types'
 
+/**
+ * Generates a random LAB color.
+ * 
+ * @returns {Lab} A LAB color.
+*/
 function getRandomLab(): Lab {
   // Get random integer between 0 and 100 (max Lightness value)
   const l = Math.floor(Math.random() * 101) 

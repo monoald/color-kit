@@ -1,5 +1,11 @@
 import { AnyFormat } from "../types";
 
+/**
+ * Identifies the format of a color.
+ *
+ * @param {AnyFormat} color - A color in any of the operable colors on the package.
+ * @returns {number} The name of the format of the received color.
+*/
 function identifyFormat(color: AnyFormat): string {
   let colorFormat: string
 

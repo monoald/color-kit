@@ -1,6 +1,13 @@
 import { Cmyk, Hsl } from '../../types'
 import { validateCmyk } from '../../validate'
 
+/**
+ * Converts a CMYK color to HSL format.
+ * 
+ * @param {Cmyk} cmyk - CMYK color.
+ * @returns {Hsl} An HSL color.
+ * @throws {Error} If a CMYK value is missing, is not a number, or is outside the range of 0 to 100.
+*/
 function cmykToHsl(cmyk: Cmyk): Hsl {
   validateCmyk(cmyk)
 

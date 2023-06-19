@@ -2,7 +2,13 @@ import { BaseColor, ColorFormats, Hsl } from '../types'
 import { colorFormatConverter } from '../convert'
 import { identifyFormat } from '../utils/identifyFormat'
 
-
+/**
+ * Creates a complementary color palette from a base color.
+ * 
+ * @param {BaseColor} color - The base color to create the color palette.
+ * @returns {Array<BaseColor>} An array of colors two that make a color palette.
+ * @throws {Error} If the parameter color does not follow its format requirements.
+*/
 function makeComplementaryPalette(color: BaseColor): Array<BaseColor> {
   const format = identifyFormat(color) as keyof ColorFormats
   let h: number

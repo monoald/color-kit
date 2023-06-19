@@ -1,5 +1,10 @@
 import { Hsl } from '../types'
 
+/**
+ * Generates a random HSL color.
+ * 
+ * @returns {Hsl} An HSL color.
+*/
 function getRandomHsl(): Hsl {
   // Get random integer between 0 and 100 (max Hue value)
   const h = Math.floor(Math.random() * 361)

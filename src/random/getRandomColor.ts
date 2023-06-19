@@ -7,6 +7,14 @@ interface Options {
   allFormats?: boolean
 }
 
+/**
+ * Generates a random color.
+ * 
+ * @param {Options} options - The options to generate a random color
+ * @param {Array<string>} options.formats - The formats to return the random number.
+ * @param {boolean} options.allFormats - Whether to return a color in all available formats.
+ * @returns {ColorFormats} An object with a color in different formats.
+*/
 function getRandomColor(options: Options): ColorFormats {
   const formats = options.allFormats ? ['cmyk', 'hex', 'hsl', 'hsv', 'lab', 'rgb', 'xyz'] : options.formats
 

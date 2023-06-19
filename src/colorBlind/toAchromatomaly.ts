@@ -2,6 +2,13 @@ import converter from '../convert'
 import { BaseColor, ColorFormats, Rgb } from '../types'
 import { identifyFormat } from '../utils/identifyFormat'
 
+/**
+ * Simulate Achromatomaly color blindness.
+ * 
+ * @param {BaseColor} color - The color to be simulated.
+ * @returns {BaseColor} A color blindness simulation of the input color.
+ * @throws {Error} If the parameter color does not follow its format requirements.
+*/
 function toAchromatomaly(color: BaseColor): BaseColor {
   const format = identifyFormat(color) as keyof ColorFormats
   let achromatomalyColor: BaseColor

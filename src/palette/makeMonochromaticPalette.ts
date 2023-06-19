@@ -2,6 +2,15 @@ import { BaseColor, ColorFormats, Rgb } from '../types'
 import { colorFormatConverter } from '../convert'
 import { identifyFormat } from '../utils/identifyFormat'
 
+/**
+ * Creates a monochromatic color palette from a base color.
+ * 
+ * @param {BaseColor} color - The base color to create the color palette.
+ * @param {number} quantity - The number of colors to be part of the palette, by default 3.
+ * @param {number} variation - The mathematical variation of shade in a color, by default 20.
+ * @returns {Array<BaseColor>} An array of colors that make a color palette.
+ * @throws {Error} If the parameter color does not follow its format requirements.
+*/
 function makeMonochromaticPalette(color: BaseColor, quantity = 3, variation = 20): Array<BaseColor> {
   const format = identifyFormat(color) as keyof ColorFormats
   const palette: Array<BaseColor> = [color]

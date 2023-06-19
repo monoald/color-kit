@@ -1,8 +1,13 @@
-import { Cmyk } from '../../types'
+import { Cmyk, Hex } from '../../types'
 import { cmykToRgb } from './cmykToRgb'
 
-type Hex = string
-
+/**
+ * Converts a CMYK color to Hexadecimal format.
+ * 
+ * @param {Cmyk} cmyk - CMYK color.
+ * @returns {string} A Hexadecimal color.
+ * @throws {Error} If a CMYK value is missing, is not a number, or is outside the range of 0 to 100.
+*/
 function cmykToHex(cmyk: Cmyk): Hex {
   // Convert CMYK to RGB
   const { r, g, b } = cmykToRgb(cmyk)
