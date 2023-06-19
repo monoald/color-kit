@@ -1,4 +1,5 @@
 import { Cmyk, Hex } from '../../types'
+import { validateCmyk } from '../../validate'
 import { cmykToRgb } from './cmykToRgb'
 
 /**
@@ -9,6 +10,8 @@ import { cmykToRgb } from './cmykToRgb'
  * @throws {Error} If a CMYK value is missing, is not a number, or is outside the range of 0 to 100.
 */
 function cmykToHex(cmyk: Cmyk): Hex {
+  validateCmyk(cmyk)
+
   // Convert CMYK to RGB
   const { r, g, b } = cmykToRgb(cmyk)
 

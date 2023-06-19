@@ -1,4 +1,5 @@
 import { Cmyk, Hsv } from '../../types'
+import { validateHsv } from '../../validate'
 import { rgbToCmyk } from '../rgbTo'
 import { hsvToRgb } from './hsvToRgb'
 
@@ -10,6 +11,8 @@ import { hsvToRgb } from './hsvToRgb'
  * @throws {Error} If a HSV value is missing, is not a number, or is outside of its respective range.
 */
 function hsvToCmyk(hsv: Hsv): Cmyk {
+  validateHsv(hsv)
+
   // Convert HSL to RGB
   const rgb = hsvToRgb(hsv)
 

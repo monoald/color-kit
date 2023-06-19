@@ -1,4 +1,5 @@
 import { Hsl, Rgb } from '../../types'
+import { validateHsl } from '../../validate';
 
 const hue2rgb = (p: number, q: number, t: number) => {
   if (t < 0) t += 1;
@@ -19,6 +20,8 @@ const hue2rgb = (p: number, q: number, t: number) => {
  * @throws {Error} If a HSL value is missing, is not a number, or is outside of its respective range.
 */
 function hslToRgb({ h, s, l }: Hsl): Rgb {
+  validateHsl({ h, s, l })
+
   // Normalize values to a range of range 0 to 1
   h /= 360
   s /= 100

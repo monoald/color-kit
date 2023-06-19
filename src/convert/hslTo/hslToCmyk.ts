@@ -1,4 +1,5 @@
 import { Cmyk, Hsl } from '../../types'
+import { validateHsl } from '../../validate'
 import { rgbToCmyk } from '../rgbTo'
 import { hslToRgb } from './hslToRgb'
 
@@ -10,6 +11,8 @@ import { hslToRgb } from './hslToRgb'
  * @throws {Error} If a HSL value is missing, is not a number, or is outside of its respective range.
 */
 function hslToCmyk(hsl: Hsl): Cmyk {
+  validateHsl(hsl)
+
   // Convert HSL to RGB
   const rgb = hslToRgb(hsl)
 

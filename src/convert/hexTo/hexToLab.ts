@@ -1,6 +1,7 @@
 import { Lab } from '../../types'
 import { hexToRgb } from './hexToRgb'
 import { rgbToLab } from '../rgbTo'
+import { validateHex } from '../../validate'
 
 /**
  * Converts a Hexadecimal color to LAB format.
@@ -10,6 +11,8 @@ import { rgbToLab } from '../rgbTo'
  * @throws {Error} If the string has a length different from 4 or 7, it does not include the hash (#) symbol at the beginning or includes letters outside of the hexadecimal values.
 */
 function hexToLab(hex: string): Lab {
+  validateHex(hex)
+
   // Convert Hexadecimal to RGB
   const rgb = hexToRgb(hex)
 

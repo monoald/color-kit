@@ -1,5 +1,6 @@
 import { Rgb, WCAGRequierements } from '../types'
 import { getRelativeLuminance } from '../utils/getRelativeLuminance'
+import { validateRgb } from '../validate'
 
 /**
  * Calculates the contrast ratio and checks if it passes or fails levels AA and AAA of WCAG.
@@ -9,6 +10,10 @@ import { getRelativeLuminance } from '../utils/getRelativeLuminance'
  * @throws {Error} If a RGB value is missing, is not a number, or is outside of its respective range.
 */
 export function rateContrast(colors: Array<Rgb>): WCAGRequierements {
+  colors.forEach(color => {
+    validateRgb(color)
+  })
+
   const contrastRatios = []
 
   // Calculate contrast ratio for each pair

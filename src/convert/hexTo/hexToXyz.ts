@@ -1,4 +1,5 @@
 import { Xyz } from '../../types'
+import { validateHex } from '../../validate'
 import { rgbToXyz } from '../rgbTo'
 import { hexToRgb } from './hexToRgb'
 
@@ -10,6 +11,8 @@ import { hexToRgb } from './hexToRgb'
  * @throws {Error} If the string has a length different from 4 or 7, it does not include the hash (#) symbol at the beginning or includes letters outside of the hexadecimal values.
 */
 function hexToXyz(hex: string): Xyz {
+  validateHex(hex)
+
   // Convert Hexadecimal to RGB
   const rgb = hexToRgb(hex)
 
