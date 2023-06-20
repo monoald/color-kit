@@ -1,6 +1,6 @@
 {
   "name": "colors-kit",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "color-kit is a zero-dependency module that can help you with a variety of color related tasks",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -14,7 +14,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "copy-types": "copyfiles -u 1 \"src/**/*.d.ts\" dist",
-    "build": "rm -rf dist/ && npx tsc && npx tsc --module CommonJS --outdir dist/ && npm run copy-types"
+    "export-types": "echo '\nexport * from \"./types\"' >> dist/index.d.ts",
+    "build": "rm -rf dist/ && npx tsc && npx tsc --module CommonJS --outdir dist/ && npm run copy-types && npm run export-types"
   },
   "author": "monoald",
   "license": "ISC",
