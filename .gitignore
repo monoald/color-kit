@@ -219,3 +219,5 @@ $RECYCLE.BIN/
 
 src/convert/analogous.js
 src/convert/monochromatic.js
+
+test.js

@@ -1,4 +1,4 @@
-import palette from ".";
+import palette, { makeAnalogousPalette, makeComplementaryPalette, makeMonochromaticPalette, makeRandomPalette, makeSplitComplementaryPalette, makeSquarePalette, makeTetradicPalette, makeTriadicPalette } from ".";
 import { getRandomColor } from "../random";
 import { BaseColor, ColorFormats, Palette } from "../types";
 
@@ -43,32 +43,39 @@ function makeColorPalette(options: Options): Array<BaseColor> {
   switch (options.paletteType) {
     case 'analogous':
       if (variation !== 0) {
-        colorPalette = palette.makeAnalogousPalette(color, options.quantity, variation)
+        colorPalette = makeAnalogousPalette(color, options.quantity, variation)
       } else {
-        colorPalette = palette.makeAnalogousPalette(color, options.quantity)
+        colorPalette = makeAnalogousPalette(color, options.quantity)
       }
       break;
     case 'complementary':
-      colorPalette = palette.makeComplementaryPalette(color)
+      colorPalette = makeComplementaryPalette(color)
       break;
     case 'monochromatic':
       if (variation !== 0) {
-        colorPalette = palette.makeMonochromaticPalette(color, options.quantity, variation)
+        colorPalette = makeMonochromaticPalette(color, options.quantity, variation)
       } else {
-        colorPalette = palette.makeMonochromaticPalette(color, options.quantity)
+        colorPalette = makeMonochromaticPalette(color, options.quantity)
       }
       break;
     case 'split-complementary':
-      colorPalette = palette.makeSplitComplementaryPalette(color, options.quantity)
+      if (variation !== 0) {
+        colorPalette = makeSplitComplementaryPalette(color, variation)
+      } else {
+        colorPalette = makeSplitComplementaryPalette(color,)
+      }
       break;
     case 'square':
-      colorPalette = palette.makeSquarePalette(color)
+      colorPalette = makeSquarePalette(color)
       break;
       case 'tetradic':
-      colorPalette = palette.makeTetradicPalette(color)
+      colorPalette = makeTetradicPalette(color)
       break;
     case 'triadic':
-      colorPalette = palette.makeTriadicPalette(color)
+      colorPalette = makeTriadicPalette(color)
+      break;
+    case 'random':
+      colorPalette = makeRandomPalette(options.format, options.quantity)
       break;
     default:
       throw new Error('Invalid palette type.')

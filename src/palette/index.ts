@@ -5,6 +5,7 @@ export * from './makeSplitComplementaryPalette'
 export * from './makeSquarePalette'
 export * from './makeTetradicPalette'
 export * from './makeTriadicPalette'
+export * from './makeRandomPalette'
 
 export * from './makeColorPalette'
 
