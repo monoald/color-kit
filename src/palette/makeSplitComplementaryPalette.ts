@@ -7,10 +7,11 @@ import { identifyFormat } from '../utils/identifyFormat'
  * 
  * @param {BaseColor} color - The base color to create the color palette.
  * @param {number} quantity - The number of colors to be part of the palette, by default 3.
+ * @param {string} side - The side of the color wheel the split color will be.
  * @returns {Array<BaseColor>} An array of colors that make a color palette.
  * @throws {Error} If the parameter color does not follow its format requirements.
 */
-function makeSplitComplementaryPalette(color: BaseColor, variation = 50): Array<BaseColor> {
+function makeSplitComplementaryPalette(color: BaseColor, variation = 50, side: 'left' | 'right' = 'left'): Array<BaseColor> {
   const format = identifyFormat(color) as keyof ColorFormats
   const palette: Array<BaseColor> = [color]
   let h: number
@@ -36,7 +37,7 @@ function makeSplitComplementaryPalette(color: BaseColor, variation = 50): Array<
   let complementaryHue2 = complementaryHue + variation
   complementaryHue2 = complementaryHue2 > 360 ? complementaryHue2 - 360 : complementaryHue2
 
-  complementary1 = { h: complementaryHue1, s, l }
+  complementary1 = { h: complementaryHue, s, l }
 
   if (format !== 'hsl') {
     complementary1 = colorFormatConverter(complementary1, {
@@ -45,7 +46,11 @@ function makeSplitComplementaryPalette(color: BaseColor, variation = 50): Array<
     })[format] as BaseColor
   }
 
-  complementary2 = { h: complementaryHue2, s, l }
+  complementary2 = {
+    h: side === 'left' ?complementaryHue2 : complementaryHue1,
+    s,
+    l
+  }
 
   if (format !== 'hsl') {
     complementary2 = colorFormatConverter(complementary2, {
