@@ -198,6 +198,13 @@ function colorFormatConverter(
     }
   })
 
+  if (options.allFormats) {
+    if (currentFormat === 'cmyk') finalValue['cmyk'] = color as Cmyk
+    else if (currentFormat === 'hex') finalValue['hex'] = color as string
+    else if (currentFormat === 'hsl') finalValue['hsl'] = color as Hsl
+    else if (currentFormat === 'hsv') finalValue['hsv'] = color as Hsv
+    else if (currentFormat === 'rgb') finalValue['rgb'] = color as Rgb
+  }
 
   return finalValue
 }
