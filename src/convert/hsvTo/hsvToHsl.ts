@@ -30,8 +30,8 @@ function hsvToHsl({ h, s, v }: Hsv): Hsl {
   }
 
   // Normalize values to a range of range 0 to 100
-  s = s * 100
-  l = l * 100
+  s = Math.round(s * 100)
+  l = Math.round(l * 100)
 
   return { h, s, l }
 }
