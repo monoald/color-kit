@@ -57,7 +57,7 @@ export type AnyFormat = Cmyk | string | Hsl | Hsv | Lab | Rgb | Xyz
 
 export type BaseColor = Cmyk | string | Hsl | Hsv | Rgb
 
-export type Color = Array<number>
+export type Color = Cmyk | string | Hsl | Hsv | Lab | Rgb | Xyz
 
 export type Colors = Array<Color>
 
@@ -85,3 +85,5 @@ export interface WCAGRequierements {
 export type ColorBlindness = 'achromatomaly' | 'achromatopsia' | 'deuteranomaly' | 'deuteranopia' | 'protanomaly' | 'protanopia' | 'tritanomaly' | 'tritanopia'
 
 export type Palette = 'analogous' | 'complementary' | 'monochromatic' | 'split-complementary' | 'square' | 'tetradic' | 'triadic' | 'random'
+
+export type Format = 'hex' | 'cmyk' | 'hsl' | 'hsv' | 'rgb' | 'lab' | 'xyz'

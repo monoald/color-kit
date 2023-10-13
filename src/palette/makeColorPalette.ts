@@ -1,81 +1,89 @@
-import palette, { makeAnalogousPalette, makeComplementaryPalette, makeMonochromaticPalette, makeRandomPalette, makeSplitComplementaryPalette, makeSquarePalette, makeTetradicPalette, makeTriadicPalette } from ".";
-import { getRandomColor } from "../random";
-import { BaseColor, ColorFormats, Palette } from "../types";
+import { makeAnalogousPalette, makeComplementaryPalette, makeMonochromaticPalette, makeRandomPalette, makeSplitComplementaryPalette, makeSquarePalette, makeTetradicPalette, makeTriadicPalette } from ".";
+import { Color, ColorFormats, Palette } from "../types";
 
 interface Options {
-  randomColor?: boolean
-  color?: BaseColor
+  color?: Color
   format: string
   paletteType: Palette
   quantity?: number,
-  variation?: number
+  shift?: number
 }
 
 /**
  * Creates a color palette.
  * 
  * @param {Options} options - The options to create a color palette.
- * @param {boolean} options.randomColor - Whether to create a random color to use as the base color.
- * @param {BaseColor} options.color - The base color to create the palette.
+ * @param {Color} options.color - The base color to create the palette.
  * @param {string} options.format - The color format to return the palette.
  * @param {Palette} options.paletteType - The type of color palette to create.
  * @param {number} options.quantity - The number of colors to be part of the palette.
- * @param {number} options.variation - The mathematical variation of shade in a color.
- * @returns {Array<BaseColor>} An array of colors that make a color palette.
- * @throws {Error} If parameter color sent and does not follow its format requirements.
+ * @param {number} options.shift - Mathematical distance the saturation and lightness will take from each color.
+ * 
+ * @returns {Array<Color>} An array of colors that make a color palette.
+ * @throws {Error} If a color parameter does not follow its format requirements.
 */
-function makeColorPalette(options: Options): Array<BaseColor> {
-  const format = options.format as keyof ColorFormats
-  const variation = options.variation ? options.variation : 0
-  let color: BaseColor
-  let colorPalette: Array<BaseColor>
+const paletteTypes: Array<Palette> = ['analogous', 'complementary', 'monochromatic', 'split-complementary', 'square', 'tetradic', 'triadic']
 
-  // Get base color
-  if (options.randomColor) {
-    color = getRandomColor({
-      formats: [options.format]
-    })[format] as BaseColor
-  } else if (options.color) {
-    color = options.color
-  }
+function makeColorPalette(options: Options): Array<Color> {
+  const color = options.color
+  const format = options.format as keyof ColorFormats
+  const paletteType = options.paletteType !== 'random' ? options.paletteType : paletteTypes[Math.floor(Math.random() * (paletteTypes.length - 1))]
+  const quantity = options.quantity
+  const shift = options.shift
+  let colorPalette: Array<Color>
 
   // Make color palette
-  switch (options.paletteType) {
+  switch (paletteType) {
     case 'analogous':
-      if (variation !== 0) {
-        colorPalette = makeAnalogousPalette(color, options.quantity, variation)
-      } else {
-        colorPalette = makeAnalogousPalette(color, options.quantity)
-      }
+      colorPalette = makeAnalogousPalette({
+        color,
+        quantity,
+        format,
+        shift
+      })
       break;
     case 'complementary':
-      colorPalette = makeComplementaryPalette(color)
+      colorPalette = makeComplementaryPalette({
+        color,
+        quantity,
+        format,
+      })
       break;
     case 'monochromatic':
-      if (variation !== 0) {
-        colorPalette = makeMonochromaticPalette(color, options.quantity, variation)
-      } else {
-        colorPalette = makeMonochromaticPalette(color, options.quantity)
-      }
+      colorPalette = makeMonochromaticPalette({
+        color,
+        quantity,
+        format,
+        shift
+      })
       break;
     case 'split-complementary':
-      if (variation !== 0) {
-        colorPalette = makeSplitComplementaryPalette(color, variation)
-      } else {
-        colorPalette = makeSplitComplementaryPalette(color,)
-      }
+      colorPalette = makeSplitComplementaryPalette({
+        color,
+        quantity,
+        format,
+      })
       break;
     case 'square':
-      colorPalette = makeSquarePalette(color)
+      colorPalette = makeSquarePalette({
+        color,
+        quantity,
+        format,
+      })
       break;
       case 'tetradic':
-      colorPalette = makeTetradicPalette(color)
+      colorPalette = makeTetradicPalette({
+        color,
+        quantity,
+        format,
+      })
       break;
     case 'triadic':
-      colorPalette = makeTriadicPalette(color)
-      break;
-    case 'random':
-      colorPalette = makeRandomPalette(options.format, options.quantity)
+      colorPalette = makeTriadicPalette({
+        color,
+        quantity,
+        format,
+      })
       break;
     default:
       throw new Error('Invalid palette type.')

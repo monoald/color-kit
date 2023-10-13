@@ -1,4 +1,4 @@
-import { Cmyk, Hsl, Hsv, Rgb, ColorFormats, BaseColor } from '../types'
+import { Cmyk, Hsl, Hsv, Rgb, ColorFormats, Color } from '../types'
 import { identifyFormat } from '../utils/identifyFormat'
 import converter from './index'
 
@@ -12,7 +12,7 @@ interface Options {
 /**
  * Generates a random color.
  * 
- * @param {BaseColor} color - A color in any format of the BaseColor formats.
+ * @param {Color} color - A color in any format of the Color formats.
  * @param {Options} options - The options to convert a color to other format.
  * @param {Array<string>} options.currentFormat - The current formats of the color.
  * @param {Array<string>} options.targetFormats - The formats to convert the color.
@@ -22,7 +22,7 @@ interface Options {
  * @throws {Error} If the parameter color does not follow its format requirements.
 */
 function colorFormatConverter(
-  color: BaseColor,
+  color: Color,
   options: Options
 ): ColorFormats {
   const currentFormat = options.identifyFormat ? identifyFormat(color) : options.currentFormat

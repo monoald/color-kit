@@ -1,36 +1,50 @@
-import { getRandomColor } from "../random"
-import { BaseColor, Palette, ColorFormats } from "../types"
+import { Color, Palette, Format } from "../types"
 import { randomNumber } from "../utils/randomNumber"
 import { makeColorPalette } from "./makeColorPalette"
+
+interface Options {
+  color?: Color
+  quantity?: number
+  format?: Format
+}
+
 /**
  * Creates a mix color palette with different color palette types.
  * 
- * @param {number} quantity - The number of colors to get on palette, by default 5.
- * @returns {Array<BaseColor>} An array of colors that make a color palette.
- * @throws {Error} If parameter color sent and does not follow its format requirements.
+ * @param {Options} options - Options to define the palette.
+ * @param {Color} options.color - Base color to create the color palette, random if not sent.
+ * @param {number} [options.quantity = 5] - Number of colors to be part of the palette, minimum value 5.
+ * @param {Format} [options.format = 'hsl'] - Palette's color format.
+ * 
+ * @returns {Array<Color>} An array of colors that make a color palette.
+ * @throws {Error} If a color parameter does not follow its format requirements.
 */
-function makeRandomPalette(format: string, quantity = 5,): Array<BaseColor> {
+function makeRandomPalette(options: Options): Array<Color> {
+  let color = options.color ? options.color : {
+    h: Math.floor(Math.random() * 361),
+    s: Math.floor(Math.random() * (100 - 20 + 1) + 20),
+    l: Math.floor(Math.random() * (100 - 12 + 1) + 12)
+  }
+  const targetFormat = options.format ? options.format : 'hsl'
+  const quantity = options.quantity ? options.quantity : 5
   const paletteTypes: Array<Palette> = ['analogous', 'complementary', 'monochromatic', 'split-complementary', 'square', 'tetradic', 'triadic']
-  const color = getRandomColor({
-    formats: [format]
-  })[format as keyof ColorFormats] as BaseColor
   
   // Get first part of the palette
   const firstPaletteQuantity = Math.ceil(quantity / 2)
   const firstPaletteType: Palette = paletteTypes.splice(randomNumber(0, paletteTypes.length - 1), 1)[0]
   const firstPalette = makeColorPalette({
-    color: color,
-    format: format,
+    color,
+    format: targetFormat,
     paletteType: firstPaletteType,
-    quantity: firstPaletteQuantity
+    quantity: firstPaletteQuantity,
   })
 
   // Get second part of the palette
-  const secondPaletteQuantity = quantity - firstPalette.length + 1
+  const secondPaletteQuantity = Math.floor(quantity / 2)
   const secondPaletteType: Palette = paletteTypes.splice(randomNumber(0, paletteTypes.length - 1), 1)[0]
   const secondPalette = makeColorPalette({
     color: firstPalette[firstPalette.length - 1],
-    format: format,
+    format: targetFormat,
     paletteType: secondPaletteType,
     quantity: secondPaletteQuantity
   })
@@ -42,7 +56,7 @@ function makeRandomPalette(format: string, quantity = 5,): Array<BaseColor> {
     const thirdPaletteType = paletteTypes.splice(randomNumber(0, paletteTypes.length - 1), 1)[0]
     const thirdPalette = makeColorPalette({
       color: secondPalette[secondPalette.length - 1],
-      format: format,
+      format: targetFormat,
       paletteType: thirdPaletteType,
       quantity: 10,
     })
