@@ -82,7 +82,7 @@ function makeTriadicPalette(options: Options): Array<Color> {
   if (quantity > 3) {
     const primaryQuantity = Math.ceil((quantity - 3) / 2)
     const secondaryQuantity = Math.floor((quantity - 3) / 2)
-    const shift = Math.floor(Math.random() * (40 - 10 + 1) + 10)
+    const shift = Math.floor(Math.random() * (10 - 1 + 1) + 1)
 
     const primaryPalette = makeMonochromaticPalette({
       color: palette[0],

@@ -26,6 +26,8 @@ function makeSquarePalette(options: Options): Array<Color> {
     s: Math.floor(Math.random() * (100 - 20 + 1) + 20),
     l: Math.floor(Math.random() * (100 - 12 + 1) + 12)
   }
+
+  console.log(color)
   const currentFormat = identifyFormat(color) as keyof ColorFormats
   const targetFormat = options.format ? options.format : currentFormat
   const quantity = options.quantity ? options.quantity : 4
@@ -89,7 +91,7 @@ function makeSquarePalette(options: Options): Array<Color> {
   if (quantity > 4) {
     const primaryQuantity = Math.ceil((quantity - 4) / 2)
     const secondaryQuantity = Math.floor((quantity - 4) / 2)
-    const shift = Math.floor(Math.random() * (40 - 10 + 1) + 10)
+    const shift = Math.floor(Math.random() * (10 - 1 + 1) + 1)
 
     const primaryPalette = makeMonochromaticPalette({
       color: palette[0],
