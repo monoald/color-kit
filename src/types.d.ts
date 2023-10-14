@@ -84,6 +84,6 @@ export interface WCAGRequierements {
 //----------SELECTION-----------
 export type ColorBlindness = 'achromatomaly' | 'achromatopsia' | 'deuteranomaly' | 'deuteranopia' | 'protanomaly' | 'protanopia' | 'tritanomaly' | 'tritanopia'
 
-export type Palette = 'analogous' | 'complementary' | 'monochromatic' | 'split-complementary' | 'square' | 'tetradic' | 'triadic' | 'random'
+export type Palette = 'analogous' | 'complementary' | 'monochromatic' | 'split-complementary' | 'square' | 'tetradic' | 'triadic' | 'random' | 'shades' | 'mixed'
 
 export type Format = 'hex' | 'cmyk' | 'hsl' | 'hsv' | 'rgb' | 'lab' | 'xyz'

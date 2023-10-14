@@ -34,7 +34,7 @@ function makeComplementaryPalette(options: Options): Array<Color> {
   let s: number
   let l: number
 
-  if (quantity < 3) throw new Error('Quantity of colors on a color palette can`t be less than 2.')
+  if (quantity < 2) throw new Error('Quantity of colors on a color palette can`t be less than 2.')
 
   // Get HSL value to manipulate Hue
   if (currentFormat !== 'hsl') {
@@ -74,7 +74,7 @@ function makeComplementaryPalette(options: Options): Array<Color> {
   if (quantity > 2) {
     const primaryQuantity = Math.ceil((quantity - 2) / 2)
     const secondaryQuantity = Math.floor((quantity - 2) / 2)
-    const shift = Math.floor(Math.random() * (40 - 10 + 1) + 10)
+    const shift = Math.floor(Math.random() * (10 - 1 + 1) + 1)
 
     const primaryPalette = makeMonochromaticPalette({
       color: palette[0],

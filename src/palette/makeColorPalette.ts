@@ -1,5 +1,6 @@
-import { makeAnalogousPalette, makeComplementaryPalette, makeMonochromaticPalette, makeRandomPalette, makeSplitComplementaryPalette, makeSquarePalette, makeTetradicPalette, makeTriadicPalette } from ".";
+import { makeAnalogousPalette, makeComplementaryPalette, makeMixedPalette, makeMonochromaticPalette, makeSplitComplementaryPalette, makeSquarePalette, makeTetradicPalette, makeTriadicPalette } from ".";
 import { Color, ColorFormats, Palette } from "../types";
+import { makeShadesPalette } from "./makeShadesPalette";
 
 interface Options {
   color?: Color
@@ -22,7 +23,7 @@ interface Options {
  * @returns {Array<Color>} An array of colors that make a color palette.
  * @throws {Error} If a color parameter does not follow its format requirements.
 */
-const paletteTypes: Array<Palette> = ['analogous', 'complementary', 'monochromatic', 'split-complementary', 'square', 'tetradic', 'triadic']
+const paletteTypes: Array<Palette> = ['analogous', 'complementary', 'monochromatic', 'split-complementary', 'square', 'tetradic', 'triadic', 'shades']
 
 function makeColorPalette(options: Options): Array<Color> {
   const color = options.color
@@ -64,6 +65,13 @@ function makeColorPalette(options: Options): Array<Color> {
         format,
       })
       break;
+    case 'shades':
+      colorPalette = makeShadesPalette({
+        color,
+        quantity,
+        format,
+      })
+      break;
     case 'square':
       colorPalette = makeSquarePalette({
         color,
@@ -71,7 +79,7 @@ function makeColorPalette(options: Options): Array<Color> {
         format,
       })
       break;
-      case 'tetradic':
+    case 'tetradic':
       colorPalette = makeTetradicPalette({
         color,
         quantity,
@@ -83,6 +91,12 @@ function makeColorPalette(options: Options): Array<Color> {
         color,
         quantity,
         format,
+      })
+      break;
+    case 'mixed':
+      colorPalette = makeMixedPalette({
+        color, quantity,
+        format
       })
       break;
     default:

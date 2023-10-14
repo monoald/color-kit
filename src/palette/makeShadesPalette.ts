@@ -21,12 +21,12 @@ interface Options {
  * @returns {Array<Color>} An array of colors that make a color palette.
  * @throws {Error} If a color parameter does not follow its format requirements.
 */
-function makeMonochromaticPalette(options: Options): Array<Color> {
-   // Basic config
+function makeShadesPalette(options: Options): Array<Color> {
+  // Basic config
   let color = options.color ? options.color : {
     h: Math.floor(Math.random() * 361),
-    s: Math.floor(Math.random() * 96),
-    l: Math.floor(Math.random() * (95 - 5 + 1) + 5)
+    s: Math.floor(Math.random() * 101),
+    l: Math.floor(Math.random() * 101)
   }
   const currentFormat = identifyFormat(color) as keyof ColorFormats
   const targetFormat = options.format ? options.format : currentFormat
@@ -39,8 +39,8 @@ function makeMonochromaticPalette(options: Options): Array<Color> {
   let l: number
 
   // Values validation
-  if (shift < 0 || shift > 10) throw new Error('Shift values can only be between 1 and 10.')
-  if (quantity < 2) throw new Error('Quantity of colors on a colorpalette can`t be less than 2.')
+  if (options.shift < 5) throw new Error('Shift can`t be less than 5.')
+  if (quantity < 2) throw new Error('Quantity of colors on a color palette can`t be less than 2.')
 
   // Get HSL value to manipulate Hue
   if (currentFormat !== 'hsl') {
@@ -61,47 +61,26 @@ function makeMonochromaticPalette(options: Options): Array<Color> {
 
   palette.push(color)
 
-  // Generate new colors
-  const saturationDirection = Math.round(Math.random()) // 0 down - 1 up
-  const lightnessDirection = Math.round(Math.random()) // 0 down - 1 up
-  let saturation = s
-  let lightness = l
-
   const minShift = 5
+
+  // Generate new colors
+  const lightnessDirection = Math.round(Math.random()) // 0 down - 1 up
+  let lightness = l
 
   for (let i = 0; i < quantity - 1; i++) {
     const variation = Math.floor(Math.random() * ((minShift * shift) - minShift + 1) + minShift)
-    const saturationShift = Math.floor(variation  * Math.random())
-    const lightnessShift = variation
-
-    let hue = h
     if (lightnessDirection === 0) {
-      hue -= Math.floor(Math.random() * 13)
-      hue = hue < 0 ? hue + 360 : hue
-    } else {
-      hue += Math.floor(Math.random() * 13)
-      hue = hue > 360 ? hue - 360 : hue
-    }
-
-    if (saturationDirection === 0) {
-      saturation -= saturationShift
-      saturation = saturation < 4 ? saturation + 92 : saturation
-    } else {
-      saturation += saturationShift
-      saturation = saturation > 96 ? saturation - 92 : saturation
-    }
-
-    if (lightnessDirection === 0) {
-      lightness -= lightnessShift
+      lightness -= variation
       lightness = lightness < 4 ? lightness + 92 : lightness
     } else {
-      lightness += lightnessShift
+      lightness += variation
       lightness = lightness > 96 ? lightness - 92 : lightness
     }
 
+
     let newColor: Color = {
-      h: hue,
-      s: saturation,
+      h,
+      s,
       l: lightness
     }
 
@@ -119,4 +98,4 @@ function makeMonochromaticPalette(options: Options): Array<Color> {
   return palette
 }
 
-export { makeMonochromaticPalette }
+export { makeShadesPalette }

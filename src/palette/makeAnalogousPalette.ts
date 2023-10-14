@@ -17,7 +17,7 @@ interface Options {
  * 
  * @param {Options} options - Options to define the palette.
  * @param {Color} options.color - Base color to create the color palette, random if not sent.
- * @param {number} [options.quantity = 3] - Number of colors to be part of the palette, minimum value 3.
+ * @param {number} [options.quantity = 3] - Number of colors to be part of the palette, minimum value 2.
  * @param {Format} [options.format = 'hsl'] - Palette's Color format.
  * @param {number} options.shift - Mathematical distance the saturation and lightness will take from each color, minimum value 1 and maximum value 10, random if not sent.
  * @param {Direction} options.direction - Direction on the color wheel the palette will take, random if not sent.
@@ -46,7 +46,7 @@ function makeAnalogousPalette(options: Options): Array<Color> {
   let l: number
 
   // Values validation
-  if (quantity < 3) throw new Error('Quantity of colors on an analogous palette can`t be less than 3.')
+  if (quantity < 2) throw new Error('Quantity of colors on an analogous palette can`t be less than 2.')
   if (shift < 0 || shift > 10) throw new Error('Shift values can only be between 1 and 10.')
   if (!directions.includes(direction)) throw new Error('Invalid direction, only "left" or "right" are valid values.')
 
