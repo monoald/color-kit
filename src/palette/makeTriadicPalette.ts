@@ -24,7 +24,7 @@ function makeTriadicPalette(options: Options): Array<Color> {
   let color = options.color ? options.color : {
     h: Math.floor(Math.random() * 361),
     s: Math.floor(Math.random() * (100 - 20 + 1) + 20),
-    l: Math.floor(Math.random() * (100 - 12 + 1) + 12)
+    l: Math.floor(Math.random() * (85 - 12 + 1) + 12)
   }
   const currentFormat = identifyFormat(color) as keyof ColorFormats
   const targetFormat = options.format ? options.format : currentFormat

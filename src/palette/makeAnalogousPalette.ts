@@ -31,8 +31,8 @@ function makeAnalogousPalette(options: Options): Array<Color> {
   // Basic config
   let color = options.color ? options.color : {
     h: Math.floor(Math.random() * 361),
-    s: Math.floor(Math.random() * 95),
-    l: Math.floor(Math.random() * (100 - 40 + 1) + 40)
+    s: Math.floor(Math.random() * (94 - 25 + 1) + 25),
+    l: Math.floor(Math.random() * (94 - 15 + 1) + 15)
   }
   const currentFormat = identifyFormat(color) as keyof ColorFormats
   const targetFormat = options.format ? options.format : currentFormat
