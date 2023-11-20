@@ -4,7 +4,7 @@ import { makeShadesPalette } from "./makeShadesPalette";
 
 interface Options {
   color?: Color
-  format: string
+  format?: string
   paletteType: Palette
   quantity?: number,
   shift?: number

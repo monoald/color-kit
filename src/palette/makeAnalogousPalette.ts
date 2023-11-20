@@ -27,18 +27,18 @@ interface Options {
 */
 const directions: Direction[] = ['left', 'right']
 
-function makeAnalogousPalette(options: Options): Array<Color> {
+function makeAnalogousPalette(options?: Options): Array<Color> {
   // Basic config
-  let color = options.color ? options.color : {
+  let color = options && options.color ? options.color : {
     h: Math.floor(Math.random() * 361),
     s: Math.floor(Math.random() * (94 - 25 + 1) + 25),
-    l: Math.floor(Math.random() * (94 - 15 + 1) + 15)
+    l: Math.floor(Math.random() * (85 - 15 + 1) + 15)
   }
   const currentFormat = identifyFormat(color) as keyof ColorFormats
-  const targetFormat = options.format ? options.format : currentFormat
-  const quantity = options.quantity ? options.quantity : 3
-  const shift = options.shift ? options.shift : Math.floor(Math.random() * (10 - 1 + 1) + 1)
-  const direction = options.direction ? options.direction : directions[Math.floor(Math.random() * 2)]
+  const targetFormat = options && options.format ? options.format : currentFormat
+  const quantity = options && options.quantity ? options.quantity : 3
+  const shift = options && options.shift ? options.shift : Math.floor(Math.random() * (10 - 1 + 1) + 1)
+  const direction = options && options.direction ? options.direction : directions[Math.floor(Math.random() * 2)]
 
   const palette: Array<Color> = []
   let h: number

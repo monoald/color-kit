@@ -6,8 +6,8 @@ import { makeMonochromaticPalette } from './makeMonochromaticPalette'
 interface Options {
   color?: Color
   quantity?: number
-  shift?: number
   format?: Format
+  shift?: number
 }
 
 /**
@@ -22,16 +22,16 @@ interface Options {
  * @returns {Array<Color>} An array of colors that make a color palette.
  * @throws {Error} If a color parameter does not follow its format requirements.
 */
-function makeSplitComplementaryPalette(options: Options): Array<Color> {
-  let color = options.color ? options.color : {
+function makeSplitComplementaryPalette(options?: Options): Array<Color> {
+  let color = options && options.color ? options.color : {
     h: Math.floor(Math.random() * 361),
     s: Math.floor(Math.random() * (100 - 20 + 1) + 20),
     l: Math.floor(Math.random() * (85 - 12 + 1) + 12)
   }
-  const shift = options.shift ? options.shift : Math.floor(Math.random() * (35 - 12 + 1) + 12)
+  const shift = options && options.shift ? options.shift : Math.floor(Math.random() * (35 - 12 + 1) + 12)
   const currentFormat = identifyFormat(color) as keyof ColorFormats
-  const targetFormat = options.format ? options.format : currentFormat
-  const quantity = options.quantity ? options.quantity : 3
+  const targetFormat = options && options.format ? options.format : currentFormat
+  const quantity = options && options.quantity ? options.quantity : 3
   const palette: Array<Color> = []
   let h: number
   let s: number

@@ -21,17 +21,17 @@ interface Options {
  * @returns {Array<Color>} An array of colors that make a color palette.
  * @throws {Error} If a color parameter does not follow its format requirements.
 */
-function makeMonochromaticPalette(options: Options): Array<Color> {
+function makeMonochromaticPalette(options?: Options): Array<Color> {
    // Basic config
-  let color = options.color ? options.color : {
+  let color = options && options.color ? options.color : {
     h: Math.floor(Math.random() * 361),
     s: Math.floor(Math.random() * 96),
     l: Math.floor(Math.random() * (95 - 5 + 1) + 5)
   }
   const currentFormat = identifyFormat(color) as keyof ColorFormats
-  const targetFormat = options.format ? options.format : currentFormat
-  const quantity = options.quantity ? options.quantity : 3
-  const shift = options.shift ? options.shift : Math.floor(Math.random() * (10 - 1 + 1) + 1)
+  const targetFormat = options && options.format ? options.format : currentFormat
+  const quantity = options && options.quantity ? options.quantity : 3
+  const shift = options && options.shift ? options.shift : Math.floor(Math.random() * (10 - 1 + 1) + 1)
 
   const palette: Array<Color> = []
   let h: number

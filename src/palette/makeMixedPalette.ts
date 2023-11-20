@@ -22,15 +22,15 @@ interface Options {
 
 const paletteTypes: Array<Palette> = ['analogous', 'complementary', 'monochromatic', 'split-complementary', 'shades']
 
-function makeMixedPalette(options: Options): Array<Color> {
+function makeMixedPalette(options?: Options): Array<Color> {
   // Basic config
-  let color = options.color ? options.color : {
+  let color = options && options.color ? options.color : {
     h: Math.floor(Math.random() * 361),
     s: Math.floor(Math.random() * 96),
     l: Math.floor(Math.random() * (95 - 5 + 1) + 5)
   }
-  const targetFormat = (options.format ? options.format : identifyFormat(color)) as keyof ColorFormats
-  const quantity = options.quantity ? options.quantity : 5
+  const targetFormat = options && options.format ? options.format : identifyFormat(color) as keyof ColorFormats
+  const quantity = options && options.quantity ? options.quantity : 5
   const palette: Array<Color> = []
 
   let currentQuantity = quantity

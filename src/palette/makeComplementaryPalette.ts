@@ -20,15 +20,15 @@ interface Options {
  * @returns {Array<Color>} An array of colors two that make a color palette.
  * @throws {Error} If a color parameter does not follow its format requirements.
 */
-function makeComplementaryPalette(options: Options): Array<Color> {
-  let color = options.color ? options.color : {
+function makeComplementaryPalette(options?: Options): Array<Color> {
+  let color = options && options.color ? options.color : {
     h: Math.floor(Math.random() * 361),
     s: Math.floor(Math.random() * (100 - 20 + 1) + 20),
     l: Math.floor(Math.random() * (100 - 12 + 1) + 12)
   }
   const currentFormat = identifyFormat(color) as keyof ColorFormats
-  const targetFormat = options.format ? options.format : currentFormat
-  const quantity = options.quantity ? options.quantity : 3
+  const targetFormat = options && options.format ? options.format : currentFormat
+  const quantity = options && options.quantity ? options.quantity : 2
   const palette: Array<Color> = []
   let h: number
   let s: number

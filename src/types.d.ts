@@ -53,8 +53,6 @@ export interface Range {
   max: number
 }
 
-export type AnyFormat = Cmyk | string | Hsl | Hsv | Lab | Rgb | Xyz
-
 export type BaseColor = Cmyk | string | Hsl | Hsv | Rgb
 
 export type Color = Cmyk | string | Hsl | Hsv | Lab | Rgb | Xyz
